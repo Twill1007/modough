@@ -1,0 +1,13 @@
+.button {
+  cursor: pointer;
+  font-family: "Belanosima", sans-serif;
+  font-size: large;
+  border: 3px solid rgb(14, 47, 121);
+  background-color: #cd6d47;
+  color: white;
+  padding: 0.75rem 3rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+}

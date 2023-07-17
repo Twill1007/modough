@@ -1,0 +1,21 @@
+.bioText {
+  text-align: center;
+  display: block;
+  position: absolute;
+  top: 165px;
+  right: 750px;
+  width: 500px;
+  height: 550px;
+  font-size: x-large;
+}
+
+.moImage {
+  width: 32%;
+  height: 77rem;
+  z-index: 0;
+  overflow: hidden;
+  padding: 92px;
+  position: absolute;
+  right: 1275px;
+  top: 25px;
+}
