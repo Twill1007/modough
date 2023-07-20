@@ -1,8 +1,8 @@
 import classes from "./CheckOutSummary.module.css";
 import { Fragment, useContext } from "react";
-import UserForm from "../../pages/UserForm";
-import CartContext from "../../store/cart-context";
-import CartItem from "./CartItem";
+import UserForm from "./UserForm";
+import CartContext from "../store/cart-context";
+import CartItem from "../components/Cart/CartItem";
 
 const orderForm = <UserForm />;
 

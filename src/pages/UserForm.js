@@ -2,7 +2,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import CartContext from "../store/cart-context";
-import CheckOutSummary from "../components/Cart/CheckOutSummary";
+import CheckOutSummary from "../pages/CheckOutSummary";
 
 import "./UserForm.css";
 
