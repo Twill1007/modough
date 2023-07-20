@@ -9,7 +9,7 @@ import {
 import CartProvider from "./store/CartProvider";
 import HomePage from "./HomePage";
 // import UserForm from "./pages/UserForm";
-import CheckOutSummary from "./components/Cart/CheckOutSummary";
+import CheckOutSummary from "./pages/CheckOutSummary";
 
 const routeDefinitions = createRoutesFromElements(
   <Route>
