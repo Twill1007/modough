@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useSelector, connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import classes from "./Cart.module.css";
@@ -7,9 +7,7 @@ import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
 
 const Cart = (props) => {
-  const cartCtx = useContext(CartContext);
-
-  console.log(cartCtx.items);
+  const data = useSelector((state) => state.data);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
 
