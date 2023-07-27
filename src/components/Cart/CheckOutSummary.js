@@ -2,7 +2,7 @@ import classes from "./CheckOutSummary.module.css";
 import { Fragment, useContext } from "react";
 import UserForm from "../../pages/UserForm";
 import CartContext from "../../store/cart-context";
-import CartItem from "./CartItem";
+import CartSummary from "../Cart/CartSummary";
 
 const orderForm = <UserForm />;
 
@@ -14,7 +14,7 @@ const CheckOutSummary = (props) => {
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {cartCtx.items.map((item) => (
-        <CartItem
+        <CartSummary
           key={item.id}
           name={item.title}
           price={item.price}
@@ -26,13 +26,7 @@ const CheckOutSummary = (props) => {
   return (
     <Fragment>
       <h2>Summary of Order</h2>
-      <div className={classes.summaryHeading}>
-        {cartItems}
-        <div className={classes.total}>
-          <span>Total Amount</span>
-          <span>$15</span>
-        </div>
-      </div>
+      <div className={classes.summaryHeading}>{cartItems}</div>
       <div>{orderForm}</div>
     </Fragment>
   );
