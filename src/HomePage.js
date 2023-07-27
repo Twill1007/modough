@@ -3,12 +3,11 @@ import React from "react";
 import moImage from "./assets/Morgan.jpg";
 import MainNavigation from "./components/Layout/MainNavigation";
 import Cart from "./components/Cart/Cart";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import MenuCC from "./pages/MenuCC";
 import MenuSD from "./pages/MenuSD";
 import ButtonCC from "./components/ButtonCC";
 import ButtonSD from "./components/ButtonSD";
-import CartProvider from "./store/CartProvider";
 
 function HomePage() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -40,7 +39,7 @@ function HomePage() {
   };
 
   return (
-    <CartProvider>
+    <Fragment>
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       {MenuCCIsShown && (
         <MenuCC onClose={hideMenuCCHandler} onShowCart={showCartHandler} />
@@ -65,7 +64,7 @@ function HomePage() {
       </p>
       <ButtonCC onShowMenuCC={showMenuCCHandler} />
       <ButtonSD onShowMenuSD={showMenuSDHandler} />
-    </CartProvider>
+    </Fragment>
   );
 }
 
