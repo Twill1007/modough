@@ -1,5 +1,5 @@
 // UserForm.js
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import "./UserForm.css";
@@ -42,100 +42,97 @@ const UserForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="user-form">
-      <label>
-        First Name:
-        <input
-          type="text"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-          required
-        />
-      </label>
+    <Fragment>
+      <form onSubmit={handleSubmit} className="user-form">
+        <label>
+          First Name: <br></br>
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Last Name:<br></br>
+          <input
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Address: <br></br>
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          City: <br></br>
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          State: <br></br>
+          <input
+            type="text"
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          ZIP: <br></br>
+          <input
+            type="text"
+            name="zip"
+            value={formData.zip}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Email: <br></br>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Phone Number: <br></br>
+          <input
+            type="tel"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br></br>
+        <button type="submit">Submit</button>
 
-      <label>
-        Last Name:
-        <input
-          type="text"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        Address:
-        <input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        City:
-        <input
-          type="text"
-          name="city"
-          value={formData.city}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        State:
-        <input
-          type="text"
-          name="state"
-          value={formData.state}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        ZIP:
-        <input
-          type="text"
-          name="zip"
-          value={formData.zip}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        Email:
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        Phone Number:
-        <input
-          type="tel"
-          name="phoneNumber"
-          value={formData.phoneNumber}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <button type="submit">Submit</button>
-      <Link to="/">
-        <button>Go back to Main Page</button>
-      </Link>
-    </form>
+        <br></br>
+        <Link to="/">
+          <button>Go back to Main Page</button>
+        </Link>
+      </form>
+    </Fragment>
   );
 };
 

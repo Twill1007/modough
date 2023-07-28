@@ -22,10 +22,16 @@
   justify-content: space-between;
   justify-content: center;
   align-items: center;
+  border: solid 2px;
+  border-radius: 3%;
   margin: auto;
   padding: auto;
+  background-color: #8a2b06;
   font-size: xx-large;
   font-weight: bold;
-  background-color: #8a2b06;
   color: white;
+}
+
+.orderForm {
+  position: relative;
 }

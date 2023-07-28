@@ -1,8 +1,12 @@
 /* UserForm.css */
 .user-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
+  position: absolute;
+  top: 0;
+  right: 500px;
+  left: 500px;
+  max-width: 300px;
+  max-height: 900px;
+  padding: 50px;
   margin: 0 auto;
 }
 
