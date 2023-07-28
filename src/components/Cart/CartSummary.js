@@ -7,8 +7,6 @@ import CartContext from "../../store/cart-context";
 function CartSummary(props) {
   const cartCtx = useContext(CartContext);
 
-  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
-
   return (
     <Fragment>
       {cartCtx.items.length !== 0 && (
@@ -22,9 +20,6 @@ function CartSummary(props) {
           </div>
         </li>
       )}
-      <div>
-        <span className={classes.totalAmount}>Total Amount:{totalAmount}</span>
-      </div>
     </Fragment>
   );
 }

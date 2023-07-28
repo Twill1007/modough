@@ -10,6 +10,7 @@ const CheckOutSummary = (props) => {
   const cartCtx = useContext(CartContext);
 
   console.log(cartCtx.items);
+  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
@@ -19,6 +20,7 @@ const CheckOutSummary = (props) => {
           name={item.title}
           price={item.price}
           amount={item.amount}
+          totalAmount={item.totalAmount}
         />
       ))}
     </ul>
@@ -26,7 +28,10 @@ const CheckOutSummary = (props) => {
   return (
     <Fragment>
       <h2>Summary of Order</h2>
-      <div className={classes.summaryHeading}>{cartItems}</div>
+      <div className={classes.summaryHeading}>
+        {cartItems}
+        <span>Total Amount:{totalAmount}</span>
+      </div>
       <div>{orderForm}</div>
     </Fragment>
   );
