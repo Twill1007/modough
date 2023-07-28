@@ -1,30 +1,27 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import ModalMenuCC from "../components/UI/ModalMenuCC";
 import classes from "./MenuCC.module.css";
 import CCDough from "../assets/CCBall.JPG";
 import CookieItemFormCC from "../components/CookieItemFormCC";
-import { useContext } from "react";
-import CartContext from "../store/cart-context";
+import { addItemToCart } from "../store/actions";
 
 const ccDisplay = [
   {
     id: "c1",
     title: "Chocolate Chip Cookies",
-    description: "Delicous and soft Chocolate Chip Cookies",
+    description: "Delicious and soft Chocolate Chip Cookies",
     price: 10,
   },
 ];
 
 function MenuCC(props) {
-  const cartCtx = useContext(CartContext);
+  const dispatch = useDispatch();
+
   const addToCartHandler = (item) => {
-    cartCtx.addItem({
-      id: item.id,
-      title: item.title,
-      amount: item.amount,
-      price: item.price,
-    });
+    dispatch(addItemToCart(item));
   };
+
   const cookieItems = ccDisplay.map((item) => (
     <div key={item.id}>
       <div className={classes.meal}>
@@ -35,7 +32,7 @@ function MenuCC(props) {
       <button onClick={props.onClose}>Close</button>
       <CookieItemFormCC
         onClose={props.onClose}
-        onAddToCart={addToCartHandler}
+        onAddToCart={() => addToCartHandler(item)}
         onCart={props.onShowCart}
       />
     </div>

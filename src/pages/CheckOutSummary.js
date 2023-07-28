@@ -1,19 +1,17 @@
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
 import classes from "./CheckOutSummary.module.css";
-import { Fragment, useContext } from "react";
 import UserForm from "./UserForm";
-import CartContext from "../store/cart-context";
 import CartItem from "../components/Cart/CartItem";
 
 const orderForm = <UserForm />;
 
 const CheckOutSummary = (props) => {
-  const cartCtx = useContext(CartContext);
+  const cartItems = useSelector((state) => state.items);
 
-  console.log(cartCtx.items);
-
-  const cartItems = (
+  const cartItemsList = (
     <ul className={classes["cart-items"]}>
-      {cartCtx.items.map((item) => (
+      {cartItems.map((item) => (
         <CartItem
           key={item.id}
           name={item.title}
@@ -23,11 +21,12 @@ const CheckOutSummary = (props) => {
       ))}
     </ul>
   );
+
   return (
     <Fragment>
       <h2>Summary of Order</h2>
       <div className={classes.summaryHeading}>
-        {cartItems}
+        {cartItemsList}
         <div className={classes.total}>
           <span>Total Amount</span>
           <span>$15</span>

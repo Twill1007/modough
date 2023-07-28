@@ -1,52 +1,42 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { addItemToCart, removeItemFromCart } from "../../store/actions";
 import classes from "./Cart.module.css";
 import Modal from "../UI/Modal";
-import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
 
 const Cart = (props) => {
-  const data = useSelector((state) => state.data);
-
-  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
-
-  const hasItems = cartCtx.items.length > 0;
+  const cartItems = useSelector((state) => state.items);
+  const totalAmount = useSelector((state) => state.totalAmount.toFixed(2));
+  const dispatch = useDispatch();
 
   const cartItemRemoveHandler = (id) => {
-    cartCtx.removeItem(id);
+    dispatch(removeItemFromCart(id));
   };
 
-  const cartItemAddHandler = (item, id) => {
-    cartCtx.addItem({
-      ...item,
-      amount: 1,
-      id: id,
-      price: 10,
-    });
+  const cartItemAddHandler = (item) => {
+    dispatch(addItemToCart(item));
   };
 
-  const cartItems = (
-    <ul className={classes["cart-items"]}>
-      {cartCtx.items.map((item) => (
-        <CartItem
-          key={item.id}
-          name={item.title}
-          price={item.price}
-          amount={item.amount}
-          onRemove={cartItemRemoveHandler.bind(null, item.id)}
-          onAdd={() => cartItemAddHandler(item, item.id)}
-        />
-      ))}
-    </ul>
-  );
+  const hasItems = cartItems.length > 0;
 
   return (
     <Modal onClose={props.onClose}>
-      {cartItems}
+      <ul className={classes["cart-items"]}>
+        {cartItems.map((item) => (
+          <CartItem
+            key={item.id}
+            name={item.title}
+            price={item.price}
+            amount={item.amount}
+            onRemove={() => cartItemRemoveHandler(item.id)}
+            onAdd={() => cartItemAddHandler(item)}
+          />
+        ))}
+      </ul>
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>{totalAmount}</span>
+        <span>${totalAmount}</span>
       </div>
       <div className={classes.actions}>
         <button onClick={props.onClose} className={classes["button--alt"]}>

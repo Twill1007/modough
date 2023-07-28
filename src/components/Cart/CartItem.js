@@ -1,15 +1,22 @@
-import { useContext } from "react";
 import { Fragment } from "react";
-
+import { useDispatch } from "react-redux";
+import { removeItemFromCart, addItemToCart } from "../../store/actions";
 import classes from "./CartItem.module.css";
-import CartContext from "../../store/cart-context";
 
 const CartItem = (props) => {
-  const cartCtx = useContext(CartContext);
+  const dispatch = useDispatch();
+
+  const cartItemRemoveHandler = () => {
+    dispatch(removeItemFromCart(props.id));
+  };
+
+  const cartItemAddHandler = () => {
+    dispatch(addItemToCart(props));
+  };
 
   return (
     <Fragment>
-      {cartCtx.items.length !== 0 && (
+      {props.amount !== 0 && (
         <li className={classes["cart-item"]}>
           <div>
             <h2>{props.name}</h2>
@@ -19,8 +26,8 @@ const CartItem = (props) => {
             </div>
           </div>
           <div className={classes.actions}>
-            <button onClick={props.onRemove}>−</button>
-            <button onClick={props.onAdd}>+</button>
+            <button onClick={cartItemRemoveHandler}>−</button>
+            <button onClick={cartItemAddHandler}>+</button>
           </div>
         </li>
       )}

@@ -1,14 +1,14 @@
-import { legacy_createStore as createStore, legacy_createStore } from "redux";
+// index.js (or the entry point of your application)
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import App from "./App"; // Your root component
+// Correct import in index.js
+import store from "./store/store";
 
-const dataReducer = (state = { data: [] }, action) => {
-  if (action.type === "ADD_DATA") {
-    const newState = { ...state };
-    newState.data = [...newState.data, action.payload];
-    return newState;
-  } else {
-    return state;
-  }
-};
-
-const store = legacy_createStore(dataReducer);
-export default dataReducer;
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);

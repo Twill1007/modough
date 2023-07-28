@@ -1,28 +1,25 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import ModalMenuSD from "../components/UI/ModalMenuSD";
 import classes from "./MenuSD.module.css";
 import SDDough from "../assets/SDBall.JPG";
 import CookieItemFormSD from "../components/CookieItemFormSD";
-import { useContext } from "react";
-import CartContext from "../store/cart-context";
+import { addItemToCart } from "../store/actions";
 
 const sdDisplay = [
   {
     id: "d1",
     title: "Snickerdoodles",
-    description: "Sweet Cinammon Cookie crunch with a soft center!",
+    description: "Sweet Cinnamon Cookie crunch with a soft center!",
     price: 15,
   },
 ];
+
 function MenuSD(props) {
-  const cartCtx = useContext(CartContext);
+  const dispatch = useDispatch();
+
   const addToCartHandler = (item) => {
-    cartCtx.addItem({
-      id: item.id,
-      title: item.title,
-      amount: item.amount,
-      price: item.price,
-    });
+    dispatch(addItemToCart(item));
   };
 
   const cookieItems = sdDisplay.map((item) => (
@@ -35,11 +32,12 @@ function MenuSD(props) {
       <button onClick={props.onClose}>Close</button>
       <CookieItemFormSD
         onClose={props.onClose}
-        onAddToCart={addToCartHandler}
+        onAddToCart={() => addToCartHandler(item)}
         onCart={props.onShowCart}
       />
     </div>
   ));
+
   return (
     <ModalMenuSD onClose={props.onClose}>
       <div className={classes.total}>

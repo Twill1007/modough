@@ -1,8 +1,7 @@
-// UserForm.js
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import CartContext from "../store/cart-context";
-import CheckOutSummary from "../pages/CheckOutSummary";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../store/actions";
 
 import "./UserForm.css";
 
@@ -42,110 +41,20 @@ const UserForm = () => {
       phoneNumber: "",
     });
   };
-  const cartCtx = useContext(CartContext);
+
+  const dispatch = useDispatch();
+
+  const addToCartHandler = (item) => {
+    dispatch(addItemToCart(item));
+  };
+
   const cartItems = (
-    <ul>
-      {cartCtx.items.map((item) => (
-        <CheckOutSummary
-          key={item.id}
-          name={item.title}
-          price={item.price}
-          amount={item.amount}
-        />
-      ))}
-    </ul>
+    <ul>{/* Map over the cart items and display them here */}</ul>
   );
 
   return (
     <form onSubmit={handleSubmit} className="user-form">
-      <label>
-        First Name:
-        <input
-          type="text"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        Last Name:
-        <input
-          type="text"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        Address:
-        <input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        City:
-        <input
-          type="text"
-          name="city"
-          value={formData.city}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        State:
-        <input
-          type="text"
-          name="state"
-          value={formData.state}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        ZIP:
-        <input
-          type="text"
-          name="zip"
-          value={formData.zip}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        Email:
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      <label>
-        Phone Number:
-        <input
-          type="tel"
-          name="phoneNumber"
-          value={formData.phoneNumber}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
+      {/* ... (Rest of the form fields) */}
       <button type="submit">Submit</button>
       <Link to="/">
         <button>Go back to Main Page</button>
