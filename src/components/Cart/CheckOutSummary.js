@@ -27,10 +27,10 @@ const CheckOutSummary = (props) => {
   );
   return (
     <Fragment>
-      <h2>Summary of Order</h2>
       <div className={classes.summaryHeading}>
+        <h2 className={classes.summaryTitle}>Summary of Order</h2>
         {cartItems}
-        <span>Total Amount:{totalAmount}</span>
+        <span className={classes.total}>Total Amount: {totalAmount}</span>
       </div>
       <div>{orderForm}</div>
     </Fragment>

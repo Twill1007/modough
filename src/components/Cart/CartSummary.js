@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Fragment } from "react";
 
-import classes from "./CartItem.module.css";
+import classes from "./CartSummary.module.css";
 import CartContext from "../../store/cart-context";
 
 function CartSummary(props) {

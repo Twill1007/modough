@@ -1,8 +1,6 @@
 // UserForm.js
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import CartContext from "../store/cart-context";
-import CheckOutSummary from "../components/Cart/CheckOutSummary";
 
 import "./UserForm.css";
 
@@ -42,19 +40,6 @@ const UserForm = () => {
       phoneNumber: "",
     });
   };
-  const cartCtx = useContext(CartContext);
-  const cartItems = (
-    <ul>
-      {cartCtx.items.map((item) => (
-        <CheckOutSummary
-          key={item.id}
-          name={item.title}
-          price={item.price}
-          amount={item.amount}
-        />
-      ))}
-    </ul>
-  );
 
   return (
     <form onSubmit={handleSubmit} className="user-form">
