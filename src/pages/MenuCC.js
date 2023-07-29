@@ -40,7 +40,7 @@ function MenuCC(props) {
       />
     </div>
   ));
-
+  console.log(cookieItems);
   return (
     <ModalMenuCC onClose={props.onClose}>
       <div className={classes.total}>
