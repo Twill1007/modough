@@ -47,12 +47,12 @@
   font: inherit;
   font-weight: bold;
   font-size: 1.25rem;
-  color: #8a2b06;
+  color: white;
   border: 1px solid #8a2b06;
   width: 3rem;
   text-align: center;
   border-radius: 6px;
-  background-color: transparent;
+  background-color: #8a2b06;
   cursor: pointer;
   margin-left: 1rem;
   margin: 0.25rem;

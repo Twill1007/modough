@@ -11,7 +11,7 @@ const sdDisplay = [
     id: "d1",
     title: "Snickerdoodles",
     description: "Sweet Cinammon Cookie crunch with a soft center!",
-    price: 15,
+    price: 10,
   },
 ];
 function MenuSD(props) {
@@ -28,7 +28,7 @@ function MenuSD(props) {
   const cookieItems = sdDisplay.map((item) => (
     <div key={item.id}>
       <div className={classes.meal}>
-        <h3>{item.title}</h3>
+        <h3 className={classes.title}>{item.title}</h3>
         <p className={classes.description}>{item.description}</p>
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
       </div>
