@@ -1,22 +1,13 @@
 import React from "react";
-import ModalMenuCC from "../components/UI/ModalMenuCC";
-import classes from "./MenuCC.module.css";
-import CCDough from "../assets/CCBall.JPG";
-import CookieItemFormCC from "../components/CookieItemFormCC";
+import ModalMenu from "../components/UI/ModalMenu";
+import classes from "./Menu.module.css";
 import { useContext } from "react";
 import CartContext from "../store/cart-context";
+import CookieItemForm from "../components/CookieItemForm";
 
-const ccDisplay = [
-  {
-    id: "c1",
-    title: "Chocolate Chip Cookies",
-    description: "Delicous and soft Chocolate Chip Cookies",
-    price: 10,
-  },
-];
-
-function MenuCC(props) {
+function Menu(props) {
   const cartCtx = useContext(CartContext);
+
   const addToCartHandler = (item) => {
     cartCtx.addItem({
       id: item.id,
@@ -25,7 +16,8 @@ function MenuCC(props) {
       price: item.price,
     });
   };
-  const cookieItems = ccDisplay.map((item) => (
+
+  const cookieItems = props.menuItems.map((item) => (
     <div key={item.id}>
       <div className={classes.meal}>
         <h3>{item.title}</h3>
@@ -33,20 +25,20 @@ function MenuCC(props) {
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
       </div>
       <button onClick={props.onClose}>Close</button>
-      <CookieItemFormCC
+      <CookieItemForm
         onClose={props.onClose}
-        onAddToCart={addToCartHandler}
+        onAddToCart={() => addToCartHandler(item)}
         onCart={props.onShowCart}
       />
     </div>
   ));
 
   return (
-    <ModalMenuCC onClose={props.onClose}>
+    <ModalMenu onClose={props.onClose}>
       <div className={classes.total}>
         <img
           className={classes.CCDoughImage}
-          src={CCDough}
+          src={props.image}
           alt="cookie dough ball"
         />
         <div className={classes.actions}>
@@ -55,8 +47,8 @@ function MenuCC(props) {
           </div>
         </div>
       </div>
-    </ModalMenuCC>
+    </ModalMenu>
   );
 }
 
-export default MenuCC;
+export default Menu;

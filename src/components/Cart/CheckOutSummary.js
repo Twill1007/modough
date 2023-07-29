@@ -9,7 +9,6 @@ const orderForm = <UserForm />;
 const CheckOutSummary = (props) => {
   const cartCtx = useContext(CartContext);
 
-  console.log(cartCtx.items);
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
 
   const cartItems = (

@@ -32,7 +32,6 @@ function MenuSD(props) {
         <p className={classes.description}>{item.description}</p>
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
       </div>
-      <button onClick={props.onClose}>Close</button>
       <CookieItemFormSD
         onClose={props.onClose}
         onAddToCart={addToCartHandler}
@@ -40,6 +39,8 @@ function MenuSD(props) {
       />
     </div>
   ));
+
+  console.log(cookieItems);
   return (
     <ModalMenuSD onClose={props.onClose}>
       <div className={classes.total}>

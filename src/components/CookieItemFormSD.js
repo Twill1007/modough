@@ -48,6 +48,7 @@ const CookieItemFormSD = (props) => {
           defaultValue: "1",
         }}
       />
+      <button onClick={props.onClose}>Close</button> <br />
       {!selectOtherCookie && (
         <button
           onClick={() => {

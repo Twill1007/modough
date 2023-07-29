@@ -13,6 +13,7 @@
   font-weight: bold;
   font-size: 1.5rem;
   margin: 1rem 0;
+  border: 2px solid black;
 }
 
 .actions {
@@ -58,6 +59,7 @@
 }
 
 .description {
+  border: 2px dotted black;
   font-style: italic;
   max-width: 200px;
 }
