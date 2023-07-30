@@ -4,8 +4,9 @@ import moImage from "./assets/Morgan.jpg";
 import MainNavigation from "./components/Layout/MainNavigation";
 import Cart from "./components/Cart/Cart";
 import { useState, Fragment } from "react";
-import MenuCC from "./pages/MenuCC";
-import MenuSD from "./pages/MenuSD";
+import MenuCC from "./components/CookieMenu";
+import MenuSD from "./components/CookieMenu";
+import Menu from "./components/Menu";
 import ButtonCC from "./components/ButtonCC";
 import ButtonSD from "./components/ButtonSD";
 
@@ -42,10 +43,10 @@ function HomePage() {
     <Fragment>
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       {MenuCCIsShown && (
-        <MenuCC onClose={hideMenuCCHandler} onShowCart={showCartHandler} />
+        <Menu onClose={hideMenuCCHandler} onShowCart={showCartHandler} />
       )}
       {MenuSDIsShown && (
-        <MenuSD onClose={hideMenuSDHandler} onShowCart={showCartHandler} />
+        <Menu onClose={hideMenuSDHandler} onShowCart={showCartHandler} />
       )}
       <MainNavigation onShowCart={showCartHandler} />
 

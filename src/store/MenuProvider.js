@@ -1,15 +1,16 @@
 import { useReducer } from "react";
 
-import CartContext from "./cart-context";
+import MenuContext from "./menu-context";
 
-const defaultCartState = {
-  items: [],
-  totalAmount: 0,
+const defaultMenuState = {
+  title: "",
+  descrpition: "",
+  price: 0,
 };
 
 //concat()is a built in method that addes an item to an array and it returns a new array and does not edit the old array.
-const cartReducer = (state, action) => {
-  if (action.type === "ADD_CART_ITEM") {
+const menuReducer = (state, action) => {
+  if (action.type === "ADD_MENU_ITEM") {
     //this variable takes the new item price * new item amount and adds it to the current totalAmount.
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.amount;

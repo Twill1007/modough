@@ -27,7 +27,7 @@ const UserForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Do something with the form data, such as submit it to a server or perform other actions
-    console.log(formData);
+
     // Reset the form
     setFormData({
       firstName: "",
