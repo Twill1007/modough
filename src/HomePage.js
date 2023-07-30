@@ -4,11 +4,10 @@ import moImage from "./assets/Morgan.jpg";
 import MainNavigation from "./components/Layout/MainNavigation";
 import Cart from "./components/Cart/Cart";
 import { useState, Fragment } from "react";
-import MenuCC from "./components/CookieMenu";
-import MenuSD from "./components/CookieMenu";
-import Menu from "./components/Menu";
-import ButtonCC from "./components/ButtonCC";
-import ButtonSD from "./components/ButtonSD";
+import MenuCC from "./pages/MenuCC";
+import MenuSD from "./pages/MenuSD";
+// import Menu from "./components/Menu";
+import Button from "./components/Button";
 
 function HomePage() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -43,10 +42,10 @@ function HomePage() {
     <Fragment>
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       {MenuCCIsShown && (
-        <Menu onClose={hideMenuCCHandler} onShowCart={showCartHandler} />
+        <MenuCC onClose={hideMenuCCHandler} onShowCart={showCartHandler} />
       )}
       {MenuSDIsShown && (
-        <Menu onClose={hideMenuSDHandler} onShowCart={showCartHandler} />
+        <MenuSD onClose={hideMenuSDHandler} onShowCart={showCartHandler} />
       )}
       <MainNavigation onShowCart={showCartHandler} />
 
@@ -63,8 +62,10 @@ function HomePage() {
         cookies!!! I promise! So, step right up and go ahead and buy my
         delicious cookie dough balls made with care.
       </p>
-      <ButtonCC onShowMenuCC={showMenuCCHandler} />
-      <ButtonSD onShowMenuSD={showMenuSDHandler} />
+      <Button
+        onShowMenuCC={showMenuCCHandler}
+        onShowMenuSD={showMenuSDHandler}
+      />
     </Fragment>
   );
 }
