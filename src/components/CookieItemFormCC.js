@@ -26,13 +26,19 @@ const CookieItemFormCC = (props) => {
       setAmountIsValid(false);
       return;
     }
-    const item = {
+    const itemCC = {
       id: 1,
       title: "Chocolate Chip Cookies",
       amount: enteredAmountNumber,
       price: 10,
     };
-    props.onAddToCart(item);
+    const itemSD = {
+      id: 2,
+      title: "Snickerdoodles",
+      amount: enteredAmountNumber,
+      price: 10,
+    };
+    props.onAddToCart(itemCC, itemSD);
   };
   return (
     <form className={classes.form} onSubmit={submitHandler}>
