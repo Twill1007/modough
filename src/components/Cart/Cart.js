@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import classes from "./Cart.module.css";
@@ -13,6 +13,9 @@ const Cart = (props) => {
 
   const hasItems = cartCtx.items.length > 0;
 
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [isCheckoutCompleted, setIsCheckoutCompleted] = useState(false);
+
   const cartItemRemoveHandler = (id) => {
     cartCtx.removeItem(id);
   };
@@ -25,6 +28,48 @@ const Cart = (props) => {
       price: 10,
     });
   };
+
+  // Function to handle the checkout process
+  const checkoutHandler = () => {
+    // Prevent multiple clicks during checkout process
+    if (!isCheckoutLoading) {
+      setIsCheckoutLoading(true);
+
+      const cartData = cartCtx.items.map((item) => ({
+        title: item.title,
+        price: item.price,
+        amount: item.amount,
+      }));
+
+      console.log(cartData);
+      // Send cart data to the server
+      fetch("/carts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cartData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Cart data insertion failed");
+          }
+          setIsCheckoutCompleted(true);
+        })
+        .catch((error) => {
+          console.error("Error inserting cart data:", error);
+          // Handle the error, e.g., show an error message to the user
+        })
+        .finally(() => {
+          setIsCheckoutLoading(false);
+        });
+    }
+  };
+
+  // Reset the checkout status when the cart is closed
+  useEffect(() => {
+    setIsCheckoutCompleted(false);
+  }, [props.onClose]);
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
@@ -52,9 +97,18 @@ const Cart = (props) => {
         <button onClick={props.onClose} className={classes["button--alt"]}>
           Close
         </button>
-        <Link to="/summary">
-          {hasItems && <button className={classes.button}>Checkout</button>}
-        </Link>
+        {hasItems && (
+          <Link to="/summary">
+            <button
+              className={classes.button}
+              onClick={checkoutHandler}
+              disabled={isCheckoutLoading}
+            >
+              {isCheckoutLoading ? "Checking out..." : "Checkout"}
+            </button>
+          </Link>
+        )}
+        {isCheckoutCompleted && <p>Checkout successful!</p>}
       </div>
     </Modal>
   );

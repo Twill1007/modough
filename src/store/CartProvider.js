@@ -37,7 +37,7 @@ const cartReducer = (state, action) => {
       //action.item is all the data needed to update the items array i.e. names, price, totalAmount, etc.
       updatedItems = state.items.concat(action.item);
     }
-    console.log(existingCartItem);
+
     return {
       items: updatedItems,
       totalAmount: updatedTotalAmount,
