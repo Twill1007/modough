@@ -39,6 +39,7 @@ const Cart = (props) => {
         title: item.title,
         price: item.price,
         amount: item.amount,
+        totalAmount: totalAmount,
       }));
 
       console.log(cartData);

@@ -39,6 +39,7 @@ app.post("/carts", (req, res) => {
       title: item.title,
       price: item.price,
       amount: item.amount,
+      totalAmount: item.totalAmount,
     });
 
     return cartItem.save();
