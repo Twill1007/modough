@@ -1,5 +1,5 @@
 import React from "react";
-import ModalMenuSD from "../components/UI/ModalMenuSD";
+import ModalMenu from "../components/UI/ModalMenu";
 import classes from "./MenuSD.module.css";
 import SDDough from "../assets/SDBall.JPG";
 import CookieItemFormSD from "../components/CookieItemFormSD";
@@ -41,7 +41,7 @@ function MenuSD(props) {
   ));
 
   return (
-    <ModalMenuSD onClose={props.onClose}>
+    <ModalMenu onClose={props.onClose}>
       <div className={classes.total}>
         <img
           className={classes.SDDoughImage}
@@ -54,7 +54,7 @@ function MenuSD(props) {
           </div>
         </div>
       </div>
-    </ModalMenuSD>
+    </ModalMenu>
   );
 }
 

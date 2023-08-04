@@ -5,6 +5,7 @@ import CartContext from "./cart-context";
 const defaultCartState = {
   items: [],
   totalAmount: 0,
+  individualAmount: 20,
 };
 
 //concat()is a built in method that addes an item to an array and it returns a new array and does not edit the old array.
@@ -18,6 +19,7 @@ const cartReducer = (state, action) => {
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.item.id
     );
+    const updatedIndividualAmount = state.individualAmount;
 
     const existingCartItem = state.items[existingCartItemIndex];
     let updatedItem;
@@ -41,8 +43,10 @@ const cartReducer = (state, action) => {
     return {
       items: updatedItems,
       totalAmount: updatedTotalAmount,
+      individualAmount: updatedIndividualAmount,
     };
   }
+
   if (action.type === "REMOVE_CART_ITEM") {
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.id
@@ -74,12 +78,13 @@ const CartProvider = (props) => {
   );
 
   //everytime this handler is executed we get the item that is to be added to the cart.
-  const addItemToCartHandler = (item, id) => {
+  const addItemToCartHandler = (item, id, individualAmount) => {
     dispatchCartAction({
       type: "ADD_CART_ITEM",
       item: item,
       id: id,
       amount: 1,
+      individualAmount: individualAmount,
     });
   };
 
@@ -90,6 +95,7 @@ const CartProvider = (props) => {
   const cartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
+    individualAmount: cartState.individualAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
   };

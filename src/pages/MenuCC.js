@@ -1,5 +1,5 @@
 import React from "react";
-import ModalMenuCC from "../components/UI/ModalMenuCC";
+import ModalMenu from "../components/UI/ModalMenu";
 import classes from "./MenuCC.module.css";
 import CCDough from "../assets/CCBall.JPG";
 import CookieItemFormCC from "../components/CookieItemFormCC";
@@ -42,7 +42,7 @@ function MenuCC(props) {
   ));
 
   return (
-    <ModalMenuCC onClose={props.onClose}>
+    <ModalMenu onClose={props.onClose}>
       <div className={classes.total}>
         <img
           className={classes.CCDoughImage}
@@ -55,7 +55,7 @@ function MenuCC(props) {
           </div>
         </div>
       </div>
-    </ModalMenuCC>
+    </ModalMenu>
   );
 }
 
