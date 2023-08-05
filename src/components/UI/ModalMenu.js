@@ -1,4 +1,4 @@
-import classes from "./ModalMenuCC.module.css";
+import classes from "./ModalMenu.module.css";
 import { Fragment } from "react";
 import ReactDOM from "react-dom";
 

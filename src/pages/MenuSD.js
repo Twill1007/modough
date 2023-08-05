@@ -2,7 +2,7 @@ import React from "react";
 import ModalMenu from "../components/UI/ModalMenu";
 import classes from "./MenuSD.module.css";
 import SDDough from "../assets/SDBall.JPG";
-import CookieItemFormSD from "../components/CookieItemFormSD";
+import CookieItemForm from "../components/CookieItemForm";
 import { useContext } from "react";
 import CartContext from "../store/cart-context";
 
@@ -31,8 +31,10 @@ function MenuSD(props) {
         <h3 className={classes.title}>{item.title}</h3>
         <p className={classes.description}>{item.description}</p>
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
+        <button onClick={props.onClose}>Close</button>
       </div>
-      <CookieItemFormSD
+      <CookieItemForm
+        cookieType="SD"
         onClose={props.onClose}
         onAddToCart={addToCartHandler}
         onCart={props.onShowCart}

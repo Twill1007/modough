@@ -2,7 +2,7 @@ import React from "react";
 import ModalMenu from "../components/UI/ModalMenu";
 import classes from "./MenuCC.module.css";
 import CCDough from "../assets/CCBall.JPG";
-import CookieItemFormCC from "../components/CookieItemFormCC";
+import CookieItemForm from "../components/CookieItemForm";
 import { useContext } from "react";
 import CartContext from "../store/cart-context";
 
@@ -33,7 +33,8 @@ function MenuCC(props) {
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
       </div>
       <button onClick={props.onClose}>Close</button>
-      <CookieItemFormCC
+      <CookieItemForm
+        cookieType="CC"
         onClose={props.onClose}
         onAddToCart={addToCartHandler}
         onCart={props.onShowCart}
