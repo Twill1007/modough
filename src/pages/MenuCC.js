@@ -6,7 +6,16 @@ import CookieItemForm from "../components/CookieItemForm";
 import { useContext } from "react";
 import CartContext from "../store/cart-context";
 
-const display = [
+const displayCC = [
+  {
+    id: "c1",
+    title: "Chocolate Chip Cookies",
+    description: "Delicous and soft Chocolate Chip Cookies",
+    price: 10,
+  },
+];
+
+const displaySD = [
   {
     id: "c1",
     title: "Chocolate Chip Cookies",
@@ -25,7 +34,8 @@ function MenuCC(props) {
       price: item.price,
     });
   };
-  const cookieItems = display.map((item) => (
+  let modalContet;
+  const cookieItems = displayCC.map((item) => (
     <div key={item.id}>
       <div className={classes.meal}>
         <h3>{item.title}</h3>

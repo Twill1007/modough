@@ -2,7 +2,7 @@ import classes from "./CookieItemForm.module.css";
 import Input from "./UI/Input";
 import { useState, useRef } from "react";
 
-const CookieItemFormCC = (props) => {
+const CookieItemForm = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
   const [selectOtherCookie, setSelectOtherCookie] = useState(true);
 
@@ -73,4 +73,4 @@ const CookieItemFormCC = (props) => {
   );
 };
 
-export default CookieItemFormCC;
+export default CookieItemForm;
