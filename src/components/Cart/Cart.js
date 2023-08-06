@@ -11,6 +11,10 @@ const Cart = (props) => {
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
 
+  // const individualAmount = `$${cartCtx.individualAmount.toFixed(2)}`;
+
+  // console.log(individualAmount);
+
   const hasItems = cartCtx.items.length > 0;
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
@@ -20,12 +24,13 @@ const Cart = (props) => {
     cartCtx.removeItem(id);
   };
 
-  const cartItemAddHandler = (item, id) => {
+  const cartItemAddHandler = (item, id, individualAmount) => {
     cartCtx.addItem({
       ...item,
       amount: 1,
       id: id,
       price: 10,
+      individualAmount: individualAmount,
     });
   };
 
@@ -80,6 +85,8 @@ const Cart = (props) => {
           name={item.title}
           price={item.price}
           amount={item.amount}
+          // cookieAmount={item.individualAmount}
+          // onRemove={() => cartItemRemoveHandler(item, item.id)}
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
           onAdd={() => cartItemAddHandler(item, item.id)}
         />

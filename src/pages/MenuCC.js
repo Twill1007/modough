@@ -6,7 +6,7 @@ import CookieItemForm from "../components/CookieItemForm";
 import { useContext } from "react";
 import CartContext from "../store/cart-context";
 
-const ccDisplay = [
+const display = [
   {
     id: "c1",
     title: "Chocolate Chip Cookies",
@@ -25,14 +25,14 @@ function MenuCC(props) {
       price: item.price,
     });
   };
-  const cookieItems = ccDisplay.map((item) => (
+  const cookieItems = display.map((item) => (
     <div key={item.id}>
       <div className={classes.meal}>
         <h3>{item.title}</h3>
         <p className={classes.description}>{item.description}</p>
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
       </div>
-      <button onClick={props.onClose}>Close</button>
+
       <CookieItemForm
         cookieType="CC"
         onClose={props.onClose}

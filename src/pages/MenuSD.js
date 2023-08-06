@@ -31,7 +31,6 @@ function MenuSD(props) {
         <h3 className={classes.title}>{item.title}</h3>
         <p className={classes.description}>{item.description}</p>
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
-        <button onClick={props.onClose}>Close</button>
       </div>
       <CookieItemForm
         cookieType="SD"

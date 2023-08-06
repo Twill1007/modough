@@ -63,6 +63,7 @@ const CookieItemFormCC = (props) => {
           Your Cart
         </button>
       )}
+      {!selectOtherCookie && <button onClick={props.onClose}>Close</button>}
       {!selectOtherCookie && (
         <button onClick={props.onClose}>Other Cookies</button>
       )}
