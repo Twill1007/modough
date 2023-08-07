@@ -1,7 +1,7 @@
 .form {
   text-align: right;
   border: 2px solid blue;
-  width: 700px;
+  width: 775px;
 }
 
 .form button {
@@ -10,7 +10,7 @@
   background-color: #8a2b06;
   border: 1px solid #8a2b06;
   color: rgb(0, 0, 0);
-  padding: 0.25rem 2rem;
+  padding: -0.5rem 2rem;
   border-radius: 20px;
   font-weight: bold;
 }

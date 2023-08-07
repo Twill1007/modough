@@ -11,7 +11,6 @@ const CookieItemForm = (props) => {
   };
 
   const amountInputRef = useRef();
-
   const submitHandler = (event) => {
     event.preventDefault();
 

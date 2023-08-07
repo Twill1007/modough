@@ -15,14 +15,14 @@ const displayCC = [
   },
 ];
 
-const displaySD = [
-  {
-    id: "c1",
-    title: "Chocolate Chip Cookies",
-    description: "Delicous and soft Chocolate Chip Cookies",
-    price: 10,
-  },
-];
+// const displaySD = [
+//   {
+//     id: "c1",
+//     title: "Chocolate Chip Cookies",
+//     description: "Delicous and soft Chocolate Chip Cookies",
+//     price: 10,
+//   },
+// ];
 
 function MenuCC(props) {
   const cartCtx = useContext(CartContext);
@@ -34,11 +34,11 @@ function MenuCC(props) {
       price: item.price,
     });
   };
-  let modalContet;
+  // let modalContet;
   const cookieItems = displayCC.map((item) => (
     <div key={item.id}>
       <div className={classes.meal}>
-        <h3>{item.title}</h3>
+        <h3 className={classes.title}>{item.title}</h3>
         <p className={classes.description}>{item.description}</p>
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
       </div>
