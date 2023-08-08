@@ -4,6 +4,31 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const router = require("./routes/router");
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const User = require("./models/user");
+
+const hashPassword = async (pw) => {
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(pw, salt);
+  console.log(salt);
+  console.log(hash);
+};
+
+const login = async (pw, hashedPw) => {
+  const result = await bcrypt.compare(pw, hashedPw);
+  if (result) {
+    console.log("Logged you in Successful Match");
+  } else {
+    console.log("Incorrect!");
+  }
+};
+
+hashPassword("monkey");
+
+// login(
+//   "monkey!",
+//   "$2b$10$Klg8NTLjkrtXoNSkX0Ufw.qDVy14HMpy8uJ.hZRXZrpsBvYJnPVBS"
+// );
 
 require("dotenv/config");
 
