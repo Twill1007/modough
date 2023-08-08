@@ -27,3 +27,65 @@
   object-fit: cover;
   transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
 }
+.loginButton {
+  position: absolute;
+  top: 8px;
+  left: 985px;
+  cursor: pointer;
+  font: 75px;
+  border: 3px solid #5a1a01;
+  background-color: #2c0d00;
+  color: white;
+  padding: 0.8rem 5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+}
+.registerButton {
+  position: absolute;
+  top: 8px;
+  left: 1215px;
+  cursor: pointer;
+  border: 3px solid #5a1a01;
+  background-color: #2c0d00;
+  color: white;
+  padding: 0.8rem 5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: right;
+  border-radius: 25px;
+  font-weight: bold;
+}
+.loginButton:hover,
+.loginButton:active {
+  background-color: #2c0d00;
+  border-color: #2c0d00;
+  color: white;
+}
+
+.registerButton:hover,
+.registerButton:active {
+  background-color: #2c0d00;
+  border-color: #2c0d00;
+  color: white;
+}
+
+.loginButton--alt {
+  color: #5a1a01;
+}
+
+.registerButton--alt {
+  color: #5a1a01;
+}
+
+.loginButton {
+  background-color: #5a1a01;
+  color: white;
+}
+
+.registerButton {
+  background-color: #5a1a01;
+  color: white;
+}
