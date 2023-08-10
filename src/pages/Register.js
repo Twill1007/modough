@@ -1,13 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Register() {
   const formSubmitHandler = (e) => {
     e.preventDefault();
+
+    //   fetch("/register", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(cartData),
+    //   });
   };
 
   return (
     <div>
-      <form onSubmit={formSubmitHandler}>
+      <form onSubmit={formSubmitHandler} action="/register" method="POST">
         <h3>Create User Account</h3>
         <label>First Name</label>
         <input type="text"></input> <br />
@@ -28,8 +37,11 @@ function Register() {
         <input type="text"></input> <br />
         <label>Password</label>
         <input type="password"></input> <br />
-        <button type="submit">Button</button>
+        <button type="submit">Submit</button>
       </form>
+      <Link to="/">
+        <button>Home</button>
+      </Link>
     </div>
   );
 }
