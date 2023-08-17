@@ -11,7 +11,7 @@ const MainNavigation = (props) => {
       <header className={classes.header}>
         <h1>Mo's Dough!</h1>
 
-        <Link to="/register">
+        <Link to="/auth">
           <button className={classes.registerButton}>Register</button>
         </Link>
         <Link to="/login">
