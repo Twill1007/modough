@@ -7,23 +7,14 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Users = require("./models/user");
 
-const hashPassword = async (pw) => {
-  const salt = await bcrypt.genSalt(10);
-  const hash = await bcrypt.hash(pw, salt);
-  console.log(salt);
-  console.log(hash);
-};
-
-const login = async (pw, hashedPw) => {
-  const result = await bcrypt.compare(pw, hashedPw);
-  if (result) {
-    console.log("Logged you in Successful Match");
-  } else {
-    console.log("Incorrect!");
-  }
-};
-
-hashPassword("monkey");
+// const login = async (pw, hashedPw) => {
+//   const result = await bcrypt.compare(pw, hashedPw);
+//   if (result) {
+//     console.log("Logged you in Successful Match");
+//   } else {
+//     console.log("Incorrect!");
+//   }
+// };
 
 // login(
 //   "monkey!",
@@ -83,17 +74,32 @@ app.post("/carts", (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
+  const hashPassword = async (password) => {
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+    console.log(salt);
+    console.log(hash);
+    return hash;
+  };
   const userData = req.body;
+  const password = req.body.password;
+
+  console.log("Here is the password:", password);
   console.log("User data received:", userData);
   try {
+    const hashedPassword = await hashPassword(password);
+    userData.hashedPassword = hashedPassword;
+
     const newUser = new Users(userData);
     await newUser.save();
     res.status(201).json({ message: "User data received successfully" });
+    console.log("Hashed Password", hashedPassword);
   } catch (error) {
     console.error("Error registering user:", error);
     res.status(500).json({ message: "Failed to register user" });
   }
 });
+
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
   console.log(`Server is running on ${port}`);

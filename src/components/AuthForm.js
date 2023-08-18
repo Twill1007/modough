@@ -103,7 +103,7 @@ function AuthForm() {
           {errors.email && <span>This field is required.</span>}
         </p>
         <p>
-          <label htmlFor="image">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             id="password"
             type="password"

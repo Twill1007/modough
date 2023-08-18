@@ -21,10 +21,10 @@ const userSchema = new mongoose.Schema({
     unique: true,
     required: [true, "Email cannot be blank"],
   },
-  // hashedPassword: {
-  //   type: String,
-  //   required: [true, "Password cannot be blank"],
-  // },
+  hashedPassword: {
+    type: String,
+    required: [true, "Password cannot be blank"],
+  },
 });
 
 module.exports = mongoose.model("Users", userSchema);
