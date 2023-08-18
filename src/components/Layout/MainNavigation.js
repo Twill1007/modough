@@ -2,8 +2,6 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import HeaderCartButton from "./HeaderCartButton";
 import classes from "./MainNavigation.module.css";
-import Login from "../../pages/Login";
-import Register from "../../pages/Register";
 
 const MainNavigation = (props) => {
   return (
