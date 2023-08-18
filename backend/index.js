@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const router = require("./routes/router");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const User = require("./models/user");
+const Users = require("./models/user");
 
 const hashPassword = async (pw) => {
   const salt = await bcrypt.genSalt(10);
@@ -86,7 +86,7 @@ app.post("/register", async (req, res) => {
   const userData = req.body;
   console.log("User data received:", userData);
   try {
-    const newUser = new User(userData);
+    const newUser = new Users(userData);
     await newUser.save();
     res.status(201).json({ message: "User data received successfully" });
   } catch (error) {
