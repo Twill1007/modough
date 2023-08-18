@@ -1,15 +1,30 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  username: {
+  firstName: {
     type: String,
     unique: true,
-    required: [true, "Username cannot be blank"],
+    required: [true, "First name cannot be blank"],
   },
-  hashedPassword: {
+  streetAddress: {
     type: String,
-    required: [true, "Password cannot be blank"],
+    unique: true,
+    required: [true, "Street address cannot be blank"],
   },
+  city: {
+    type: String,
+    unique: true,
+    required: [true, "City cannot be blank"],
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: [true, "Email cannot be blank"],
+  },
+  // hashedPassword: {
+  //   type: String,
+  //   required: [true, "Password cannot be blank"],
+  // },
 });
 
 module.exports = mongoose.model("User", userSchema);

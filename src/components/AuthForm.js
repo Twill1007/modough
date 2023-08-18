@@ -1,34 +1,28 @@
 import { useState } from "react";
 import { Form, useActionData } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 import classes from "./AuthForm.module.css";
 
 function AuthForm() {
   const data = useActionData();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({
-    firstName: "",
-    streetAddress: "",
-    email: "",
-    password: "",
-  });
+  const [isLogin, setIsLogin] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     try {
       const response = await fetch("/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
       });
       if (response.ok) {
         //Registration Success
@@ -50,7 +44,7 @@ function AuthForm() {
         method="post"
         className={classes.form}
         action="/auth"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <h1>{isLogin ? "Log in" : "Create a new user"}</h1>
         {data && data.errors && (
@@ -70,10 +64,9 @@ function AuthForm() {
                 id="firstName"
                 type="text"
                 name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                required
+                {...register("firstName", { required: true })}
               />
+              {errors.firstName && <span>This field is required.</span>}
             </p>
             <p>
               <label htmlFor="streetAddress">Street Address</label>
@@ -81,14 +74,19 @@ function AuthForm() {
                 id="streetAddress"
                 type="text"
                 name="streetAddress"
-                value={formData.streetAddress}
-                onChange={handleChange}
-                required
+                {...register("streetAddress", { required: true })}
               />
+              {errors.streetAddress && <span>This field is required.</span>}
             </p>
             <p>
               <label htmlFor="city">City</label>
-              <input id="city" type="text" name="city" required />
+              <input
+                id="city"
+                type="text"
+                name="city"
+                {...register("city", { required: true })}
+              />
+              {errors.city && <span>This field is required.</span>}
             </p>
           </>
         )}
@@ -96,11 +94,23 @@ function AuthForm() {
           <label htmlFor="email">
             Email {!isLogin && `(This will be your username)`}
           </label>
-          <input id="email" type="email" name="email" required />
+          <input
+            id="email"
+            type="email"
+            name="email"
+            {...register("email", { required: true })}
+          />
+          {errors.email && <span>This field is required.</span>}
         </p>
         <p>
           <label htmlFor="image">Password</label>
-          <input id="password" type="password" name="password" required />
+          <input
+            id="password"
+            type="password"
+            name="password"
+            {...register("password", { required: true })}
+          />
+          {errors.password && <span>This field is required.</span>}
         </p>
         <div className={classes.actions}>
           <button onClick={switchAuthHandler} type="button">

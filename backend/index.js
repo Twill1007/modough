@@ -83,7 +83,16 @@ app.post("/carts", (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
-  res.send(req.body);
+  const userData = req.body;
+  console.log("User data received:", userData);
+  try {
+    const newUser = new User(userData);
+    await newUser.save();
+    res.status(201).json({ message: "User data received successfully" });
+  } catch (error) {
+    console.error("Error registering user:", error);
+    res.status(500).json({ message: "Failed to register user" });
+  }
 });
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
