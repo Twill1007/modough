@@ -1,4 +1,4 @@
-import { Form, useActionData } from "react-router-dom";
+import { Form, redirect, useActionData } from "react-router-dom";
 import { Link, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -32,6 +32,7 @@ function AuthForm() {
     } catch (error) {
       console.log("Error Registering User", error);
     }
+    return redirect("/");
   };
 
   return (
