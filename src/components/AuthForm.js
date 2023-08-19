@@ -1,19 +1,19 @@
-import { useState } from "react";
 import { Form, useActionData } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import classes from "./AuthForm.module.css";
 
 function AuthForm() {
+  const [searchParams] = useSearchParams();
+  const isLogin = searchParams.get("mode") === "login";
+
   const data = useActionData();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const [isLogin, setIsLogin] = useState(false);
 
   const onSubmit = async (data) => {
     try {
@@ -33,10 +33,6 @@ function AuthForm() {
       console.log("Error Registering User", error);
     }
   };
-
-  function switchAuthHandler() {
-    setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin);
-  }
 
   return (
     <>
@@ -113,9 +109,9 @@ function AuthForm() {
           {errors.password && <span>This field is required.</span>}
         </p>
         <div className={classes.actions}>
-          <button onClick={switchAuthHandler} type="button">
+          <Link to={`?mode=${isLogin ? "signup" : "login"}`}>
             {isLogin ? "Create new user" : "Login"}
-          </button>
+          </Link>
           <button>Save</button>
         </div>
         <Link to="/">

@@ -10,6 +10,9 @@ import CartProvider from "./store/CartProvider";
 import HomePage from "./HomePage";
 import Login from "./pages/Login";
 import AuthForm from "./components/AuthForm";
+import AuthenticationPage, {
+  action as authAction,
+} from "./pages/Authentication";
 // import UserForm from "./pages/UserForm";
 import CheckOutSummary from "./components/Cart/CheckOutSummary";
 
@@ -18,7 +21,7 @@ const routeDefinitions = createRoutesFromElements(
     <Route path="/" element={<HomePage />} />
     <Route path="/summary" element={<CheckOutSummary />} />
     <Route path="/login" element={<Login />} />
-    <Route path="/auth" element={<AuthForm />} />
+    <Route path="/auth" element={<AuthenticationPage />} />
   </Route>
 );
 
