@@ -20,7 +20,7 @@ const MainNavigation = (props) => {
         <Link to="/login">
           <button className={classes.loginButton}>Login</button>
         </Link>
-        {!isLoggedIn && <HeaderCartButton onClick={props.onShowCart} />}
+        {isLoggedIn && <HeaderCartButton onClick={props.onShowCart} />}
       </header>
     </Fragment>
   );

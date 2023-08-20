@@ -36,6 +36,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use("/carts", router);
+app.use("/register", router);
 
 const dbOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose
@@ -81,16 +82,23 @@ app.post("/register", async (req, res) => {
     // console.log(hash);
     return hash;
   };
-  const userData = req.body;
+  const { firstName, streetAddress, city, email } = req.body;
   const password = req.body.password;
 
   try {
     const hashedPassword = await hashPassword(password);
-    userData.hashedPassword = hashedPassword;
+    hashedPassword.hashedPassword = hashedPassword;
     // console.log("Here is the password:", password);
     // console.log("User data received:", userData);
-    const newUser = new Users(userData);
+    const newUser = new Users({
+      firstName,
+      streetAddress,
+      city,
+      email,
+      hashedPassword,
+    });
     await newUser.save();
+    console.log(newUser);
     res.status(201).json({ message: "User data received successfully" });
     // console.log("Hashed Password", hashedPassword);
   } catch (error) {
