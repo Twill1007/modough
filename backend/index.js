@@ -6,6 +6,8 @@ const router = require("./routes/router");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Users = require("./models/user");
+const jwt = require("jsonwebtoken");
+require("dotenv/config");
 
 // const login = async (pw, hashedPw) => {
 //   const result = await bcrypt.compare(pw, hashedPw);
@@ -20,8 +22,6 @@ const Users = require("./models/user");
 //   "monkey!",
 //   "$2b$10$Klg8NTLjkrtXoNSkX0Ufw.qDVy14HMpy8uJ.hZRXZrpsBvYJnPVBS"
 // );
-
-require("dotenv/config");
 
 const app = express();
 
@@ -76,7 +76,7 @@ app.post("/carts", (req, res) => {
 
 app.post("/register", async (req, res) => {
   const hashPassword = async (password) => {
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(12);
     const hash = await bcrypt.hash(password, salt);
     // console.log(salt);
     // console.log(hash);
@@ -98,9 +98,13 @@ app.post("/register", async (req, res) => {
       hashedPassword,
     });
     await newUser.save();
-    console.log(newUser);
-    res.status(201).json({ message: "User data received successfully" });
+    console.log("this is the new User", newUser);
+    // res.status(201).json({ message: "User data received successfully" });
     // console.log("Hashed Password", hashedPassword);
+    const token = jwt.sign({ email: newUser.email }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+    res.status(201).json({ message: "User registered successfully", token });
   } catch (error) {
     console.error("Error registering user:", error);
     res.status(500).json({ message: "Failed to register user" });

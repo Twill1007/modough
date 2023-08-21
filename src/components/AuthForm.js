@@ -1,10 +1,11 @@
-import { Form, redirect, useActionData } from "react-router-dom";
-import { Link, useSearchParams } from "react-router-dom";
+import { Form, useActionData } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import classes from "./AuthForm.module.css";
 
 function AuthForm() {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const isLogin = searchParams.get("mode") === "login";
 
@@ -32,7 +33,8 @@ function AuthForm() {
     } catch (error) {
       console.log("Error Registering User", error);
     }
-    return redirect("/");
+    // return redirect("/");
+    navigate("/");
   };
 
   return (
@@ -40,7 +42,7 @@ function AuthForm() {
       <Form
         method="post"
         className={classes.form}
-        action="/auth"
+        // action="/auth"
         onSubmit={handleSubmit(onSubmit)}
       >
         <h1>{isLogin ? "Log in" : "Create a new user"}</h1>
