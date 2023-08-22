@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const router = require("./routes/router");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const Users = require("./models/user");
+const User = require("./models/user");
 const jwt = require("jsonwebtoken");
 require("dotenv/config");
 
@@ -35,8 +35,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use("/carts", router);
-app.use("/register", router);
+// app.use("/carts", router);
+// app.use("/register", router);
 
 const dbOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose
@@ -90,7 +90,7 @@ app.post("/register", async (req, res) => {
     hashedPassword.hashedPassword = hashedPassword;
     // console.log("Here is the password:", password);
     // console.log("User data received:", userData);
-    const newUser = new Users({
+    const newUser = new User({
       firstName,
       streetAddress,
       city,
@@ -104,6 +104,7 @@ app.post("/register", async (req, res) => {
     const token = jwt.sign({ email: newUser.email }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
+    console.log(token);
     res.status(201).json({ message: "User registered successfully", token });
   } catch (error) {
     console.error("Error registering user:", error);

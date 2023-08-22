@@ -1,10 +1,12 @@
 import { Form, useActionData } from "react-router-dom";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 import classes from "./AuthForm.module.css";
 
 function AuthForm() {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const isLogin = searchParams.get("mode") === "login";
@@ -18,6 +20,7 @@ function AuthForm() {
 
   const onSubmit = async (data) => {
     try {
+      setIsButtonDisabled(true);
       const response = await fetch("/register", {
         method: "POST",
         headers: {
@@ -33,6 +36,7 @@ function AuthForm() {
     } catch (error) {
       console.log("Error Registering User", error);
     }
+    setIsButtonDisabled(false);
     // return redirect("/");
     navigate("/");
   };
@@ -115,7 +119,7 @@ function AuthForm() {
           <Link to={`?mode=${isLogin ? "signup" : "login"}`}>
             {isLogin ? "Create new user" : "Login"}
           </Link>
-          <button>Save</button>
+          <button disabled={isButtonDisabled}>Save</button>
         </div>
         <Link to="/">
           <button>Home</button>
