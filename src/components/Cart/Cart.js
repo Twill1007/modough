@@ -41,6 +41,7 @@ const Cart = (props) => {
       setIsCheckoutLoading(true);
 
       const cartData = cartCtx.items.map((item) => ({
+        userId: localStorage.getItem("token"),
         title: item.title,
         price: item.price,
         amount: item.amount,

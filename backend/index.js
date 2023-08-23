@@ -54,6 +54,7 @@ app.post("/carts", (req, res) => {
   console.log("Received cart data:", cartData);
   const savePromises = cartData.map((item) => {
     const cartItem = new Cart({
+      userId: item.userId,
       title: item.title,
       price: item.price,
       amount: item.amount,
