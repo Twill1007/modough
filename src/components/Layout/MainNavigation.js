@@ -13,13 +13,11 @@ const MainNavigation = (props) => {
       <header className={classes.header}>
         <h1>Mo's Dough!</h1>
         {isLoggedIn && (
-          <Link to="/auth">
+          <Link to="/auth?mode=login">
             <button className={classes.registerButton}>Login/Sign Up</button>
           </Link>
         )}
-        <Link to="/login">
-          <button className={classes.loginButton}>Login</button>
-        </Link>
+
         {isLoggedIn && <HeaderCartButton onClick={props.onShowCart} />}
       </header>
     </Fragment>

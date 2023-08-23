@@ -126,6 +126,17 @@ app.post("/login", async (req, res) => {
   try {
     user = await User.findOne({ email: emailAddress });
     console.log(user);
+    if (!user) {
+      return res.status(401).json({ message: "Authentication Failed" });
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.hashedPassword);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Authentication Failed." });
+    }
+    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+    res.status(200).json({ message: "Login successful", token });
   } catch (error) {
     return res.status(401).json({ message: "Authentication failed." });
   }

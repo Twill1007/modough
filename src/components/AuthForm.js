@@ -33,8 +33,16 @@ function AuthForm() {
         },
         body: JSON.stringify(data),
       });
+
       if (response.ok) {
+        const responseData = await response.json();
+        const token = responseData.token;
+        console.log(responseData);
+        if (token) {
+          localStorage.setItem("token", token);
+        }
         //Registration Success
+        navigate("/");
       } else {
         //Handle Registration Error Here
       }
@@ -43,7 +51,7 @@ function AuthForm() {
     }
     setIsButtonDisabled(false);
     // return redirect("/");
-    navigate("/");
+    // navigate("/");
   };
 
   return (
@@ -121,7 +129,7 @@ function AuthForm() {
           {errors.password && <span>This field is required.</span>}
         </p>
         <div className={classes.actions}>
-          <Link to={`?mode=${isLogin ? "signup" : "login"}`}>
+          <Link to={`?mode=${isLogin ? "register" : "login"}`}>
             {isLogin ? "Create new user" : "Login"}
           </Link>
           <button disabled={isButtonDisabled}>Save</button>

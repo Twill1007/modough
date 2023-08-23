@@ -30,7 +30,7 @@
 .loginButton {
   position: absolute;
   top: 8px;
-  left: 985px;
+  left: 1195 px;
   cursor: pointer;
   font: 75px;
   border: 3px solid #5a1a01;
@@ -46,7 +46,7 @@
 .registerButton {
   position: absolute;
   top: 8px;
-  left: 1215px;
+  left: 1100px;
   cursor: pointer;
   border: 3px solid #5a1a01;
   background-color: #2c0d00;
