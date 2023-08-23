@@ -1,10 +1,60 @@
 // UserForm.js
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import CartContext from "../store/cart-context";
 
 import "./UserForm.css";
 
-const UserForm = () => {
+const UserForm = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
+  const hasItems = cartCtx.items.length > 0;
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [isCheckoutCompleted, setIsCheckoutCompleted] = useState(false);
+
+  const checkoutHandler = () => {
+    // Prevent multiple clicks during checkout process
+    if (!isCheckoutLoading) {
+      setIsCheckoutLoading(true);
+
+      const cartData = cartCtx.items.map((item) => ({
+        userId: localStorage.getItem("token"),
+        title: item.title,
+        price: item.price,
+        amount: item.amount,
+        totalAmount: totalAmount,
+      }));
+
+      console.log(cartData);
+      // Send cart data to the server
+      fetch("/carts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cartData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Cart data insertion failed");
+          }
+          setIsCheckoutCompleted(true);
+        })
+        .catch((error) => {
+          console.error("Error inserting cart data:", error);
+          // Handle the error, e.g., show an error message to the user
+        })
+        .finally(() => {
+          setIsCheckoutLoading(false);
+        });
+    }
+  };
+
+  useEffect(() => {
+    setIsCheckoutCompleted(false);
+  }, [props.onClose]);
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -131,6 +181,14 @@ const UserForm = () => {
         <Link to="/">
           <button>Go back to Main Page</button>
         </Link>
+        {hasItems && (
+          <Link to="/summary">
+            <button onClick={checkoutHandler} disabled={isCheckoutLoading}>
+              {isCheckoutLoading ? "Checking out..." : "Submit Order"}
+            </button>
+          </Link>
+        )}
+        {isCheckoutCompleted && <p>Checkout successful!</p>}
       </form>
     </Fragment>
   );

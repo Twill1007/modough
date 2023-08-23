@@ -50,33 +50,33 @@ const Cart = (props) => {
 
       console.log(cartData);
       // Send cart data to the server
-      fetch("/carts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(cartData),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Cart data insertion failed");
-          }
-          setIsCheckoutCompleted(true);
-        })
-        .catch((error) => {
-          console.error("Error inserting cart data:", error);
-          // Handle the error, e.g., show an error message to the user
-        })
-        .finally(() => {
-          setIsCheckoutLoading(false);
-        });
+      // fetch("/carts", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(cartData),
+      // })
+      //   .then((response) => {
+      //     if (!response.ok) {
+      //       throw new Error("Cart data insertion failed");
+      //     }
+      //     setIsCheckoutCompleted(true);
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error inserting cart data:", error);
+      //     // Handle the error, e.g., show an error message to the user
+      //   })
+      //   .finally(() => {
+      //     setIsCheckoutLoading(false);
+      //   });
     }
   };
 
   // Reset the checkout status when the cart is closed
-  useEffect(() => {
-    setIsCheckoutCompleted(false);
-  }, [props.onClose]);
+  // useEffect(() => {
+  //   setIsCheckoutCompleted(false);
+  // }, [props.onClose]);
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
@@ -106,7 +106,10 @@ const Cart = (props) => {
         <button onClick={props.onClose} className={classes["button--alt"]}>
           Close
         </button>
-        {hasItems && (
+        <Link to="/summary">
+          <button>Go to Checkout</button>
+        </Link>
+        {/* {hasItems && (
           <Link to="/summary">
             <button
               className={classes.button}
@@ -117,7 +120,7 @@ const Cart = (props) => {
             </button>
           </Link>
         )}
-        {isCheckoutCompleted && <p>Checkout successful!</p>}
+        {isCheckoutCompleted && <p>Checkout successful!</p>} */}
       </div>
     </Modal>
   );
