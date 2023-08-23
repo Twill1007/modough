@@ -20,8 +20,13 @@ function AuthForm() {
 
   const onSubmit = async (data) => {
     try {
+      let url = "/register"; //default URL for registration
+
+      if (isLogin) {
+        url = "/login";
+      }
       setIsButtonDisabled(true);
-      const response = await fetch("/register", {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

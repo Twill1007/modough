@@ -2,10 +2,11 @@ const Cart = require("./models/schemas");
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const router = require("./routes/router");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("./models/user");
+const router = express.Router();
+
 const jwt = require("jsonwebtoken");
 require("dotenv/config");
 
@@ -88,6 +89,7 @@ app.post("/register", async (req, res) => {
   try {
     const hashedPassword = await hashPassword(password);
     hashedPassword.hashedPassword = hashedPassword;
+
     // console.log("Here is the password:", password);
     // console.log("User data received:", userData);
     const newUser = new User({
@@ -104,6 +106,7 @@ app.post("/register", async (req, res) => {
     const token = jwt.sign({ email: newUser.email }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
+
     console.log(token);
     res.status(201).json({ message: "User registered successfully", token });
   } catch (error) {
@@ -111,6 +114,24 @@ app.post("/register", async (req, res) => {
     res.status(500).json({ message: "Failed to register user" });
   }
 });
+
+app.post("/login", async (req, res) => {
+  const emailAddress = req.body.email;
+  const password = req.body.password;
+
+  console.log(emailAddress);
+  console.log(password);
+
+  let user;
+  try {
+    user = await User.findOne({ email: emailAddress });
+    console.log(user);
+  } catch (error) {
+    return res.status(401).json({ message: "Authentication failed." });
+  }
+});
+// const token = createJSONToken(email);
+// res.json({ token });
 
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
