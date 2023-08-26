@@ -11,12 +11,14 @@ import HomePage from "./HomePage";
 import AuthenticationPage from "./pages/Authentication";
 // import UserForm from "./pages/UserForm";
 import CheckOutSummary from "./components/Cart/CheckOutSummary";
+import OrderSummary from "./pages/OrderSummary";
 
 const routeDefinitions = createRoutesFromElements(
   <Route>
     <Route path="/" element={<HomePage />} />
     <Route path="/summary" element={<CheckOutSummary />} />
     <Route path="/auth" element={<AuthenticationPage />} />
+    <Route path="/orderSummary" element={<OrderSummary />} />
     {/* <Route path="/auth?mode=login" element={<AuthenticationPage />} /> */}
   </Route>
 );

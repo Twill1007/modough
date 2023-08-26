@@ -1,4 +1,4 @@
-const Cart = require("./models/schemas");
+const { Cart } = require("./models/schemas");
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -142,6 +142,19 @@ app.post("/login", async (req, res) => {
     return res.status(401).json({ message: "Authentication failed." });
   }
 });
+
+app.get("/carts", async (req, res) => {
+  const userId = req.params.userId;
+  console.log(userId);
+  try {
+    const cartItems = await Cart.find({ userId }); // fetch all cart items
+    res.json({ cartItems }); // Sending the cart items as JSON response
+  } catch (error) {
+    console.log("Error fetching cart data", error);
+    res.status(500).json({ error: "Error fetching cart data." });
+  }
+});
+
 // const token = createJSONToken(email);
 // res.json({ token });
 
