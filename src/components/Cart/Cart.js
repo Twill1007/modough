@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import classes from "./Cart.module.css";
@@ -18,7 +18,7 @@ const Cart = (props) => {
   const hasItems = cartCtx.items.length > 0;
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
-  const [isCheckoutCompleted, setIsCheckoutCompleted] = useState(false);
+  // const [isCheckoutCompleted, setIsCheckoutCompleted] = useState(false);
 
   const cartItemRemoveHandler = (id) => {
     cartCtx.removeItem(id);

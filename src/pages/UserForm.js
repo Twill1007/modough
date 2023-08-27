@@ -1,5 +1,5 @@
 // UserForm.js
-import React, { useState, Fragment, useContext, useEffect } from "react";
+import React, { useState, Fragment, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import CartContext from "../store/cart-context";
 
@@ -18,6 +18,7 @@ const UserForm = (props) => {
     // Prevent multiple clicks during checkout process
     if (!isCheckoutLoading) {
       setIsCheckoutLoading(true);
+      setIsCheckoutCompleted(true);
 
       const cartData = cartCtx.items.map((item) => ({
         userId: localStorage.getItem("token"),
@@ -41,6 +42,7 @@ const UserForm = (props) => {
             throw new Error("Cart data insertion failed");
           }
           navigate("/");
+          cartCtx.clearCart();
         })
         .catch((error) => {
           console.error("Error inserting cart data:", error);
@@ -49,14 +51,12 @@ const UserForm = (props) => {
         .finally(() => {
           setIsCheckoutLoading(false);
         });
-
-      cartCtx.clearCart();
     }
   };
 
-  useEffect(() => {
-    setIsCheckoutCompleted(false);
-  }, [props.onClose]);
+  // useEffect(() => {
+  //   setIsCheckoutCompleted(false);
+  // }, [props.onClose]);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -111,9 +111,9 @@ const UserForm = (props) => {
             <button onClick={checkoutHandler} disabled={isCheckoutLoading}>
               {isCheckoutLoading ? "Checking out..." : "Submit Order"}
             </button>
+            {isCheckoutCompleted && <p>Checkout successful!</p>}
           </Link>
         )}
-        {isCheckoutCompleted && <p>Checkout successful!</p>}
       </form>
     </Fragment>
   );

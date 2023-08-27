@@ -11,9 +11,9 @@ function OrderSummary() {
     try {
       const response = await fetch("/carts"); // My API endpoint URL
       const data = await response.json();
-      console.log(data);
+      console.log("This is just the data", data);
       setCartItems(data.cartItems);
-      console.log(data.cartItems);
+      console.log("CartItems", data.cartItems);
     } catch (error) {
       console.error("Error fetching cart Data:", error);
     }
