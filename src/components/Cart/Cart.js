@@ -106,9 +106,11 @@ const Cart = (props) => {
         <button onClick={props.onClose} className={classes["button--alt"]}>
           Close
         </button>
-        <Link to="/summary">
-          <button>Go to Checkout</button>
-        </Link>
+        {hasItems && (
+          <Link to="/summary">
+            <button>Go to Checkout</button>
+          </Link>
+        )}
         {/* {hasItems && (
           <Link to="/summary">
             <button
