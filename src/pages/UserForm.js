@@ -1,11 +1,12 @@
 // UserForm.js
 import React, { useState, Fragment, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CartContext from "../store/cart-context";
 
 import "./UserForm.css";
 
 const UserForm = (props) => {
+  const navigate = useNavigate();
   const cartCtx = useContext(CartContext);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -39,7 +40,7 @@ const UserForm = (props) => {
           if (!response.ok) {
             throw new Error("Cart data insertion failed");
           }
-          setIsCheckoutCompleted(true);
+          navigate("/");
         })
         .catch((error) => {
           console.error("Error inserting cart data:", error);
@@ -48,6 +49,8 @@ const UserForm = (props) => {
         .finally(() => {
           setIsCheckoutLoading(false);
         });
+
+      cartCtx.clearCart();
     }
   };
 
@@ -80,13 +83,6 @@ const UserForm = (props) => {
 
     // Reset the form
     setFormData({
-      firstName: "",
-      lastName: "",
-      address: "",
-      city: "",
-      state: "",
-      zip: "",
-      email: "",
       phoneNumber: "",
     });
   };
@@ -94,76 +90,6 @@ const UserForm = (props) => {
   return (
     <Fragment>
       <form onSubmit={handleSubmit} className="user-form">
-        <label>
-          First Name: <br></br>
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Last Name:<br></br>
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Address: <br></br>
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          City: <br></br>
-          <input
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          State: <br></br>
-          <input
-            type="text"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          ZIP: <br></br>
-          <input
-            type="text"
-            name="zip"
-            value={formData.zip}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Email: <br></br>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </label>
         <label>
           Phone Number: <br></br>
           <input
@@ -175,7 +101,6 @@ const UserForm = (props) => {
           />
         </label>
         <br></br>
-        <button type="submit">Submit</button>
 
         <br></br>
         <Link to="/">
