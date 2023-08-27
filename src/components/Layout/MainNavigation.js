@@ -6,6 +6,7 @@ import LoginButton from "../UI/LoginButton";
 import LogoutButton from "../UI/LogoutButton";
 import AboutMoButton from "../UI/AboutMoButton";
 import DoughButton from "../UI/DoughButton";
+import OrderHistoryButton from "../UI/OrderHistoryButton";
 
 const MainNavigation = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,6 +32,7 @@ const MainNavigation = (props) => {
         <DoughButton />
         {isLoggedIn && <HeaderCartButton onClick={props.onShowCart} />}
         {isLoggedIn && <LogoutButton onLogout={handleLogout} />}
+        {isLoggedIn && <OrderHistoryButton />}
       </header>
     </Fragment>
   );
