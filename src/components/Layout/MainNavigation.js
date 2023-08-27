@@ -4,6 +4,7 @@ import HeaderCartButton from "./HeaderCartButton";
 import classes from "./MainNavigation.module.css";
 import LoginButton from "../UI/LoginButton";
 import LogoutButton from "../UI/LogoutButton";
+import AboutMoButton from "../UI/AboutMoButton";
 
 const MainNavigation = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,6 +26,7 @@ const MainNavigation = (props) => {
       <header className={classes.header}>
         <h1>Mo's Dough!</h1>
         {!isLoggedIn && <LoginButton />}
+        <AboutMoButton />
         {isLoggedIn && <HeaderCartButton onClick={props.onShowCart} />}
         {isLoggedIn && <LogoutButton onLogout={handleLogout} />}
       </header>
