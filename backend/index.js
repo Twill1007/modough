@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("./models/user");
 const router = express.Router();
-
 const jwt = require("jsonwebtoken");
 require("dotenv/config");
 
@@ -25,6 +24,14 @@ require("dotenv/config");
 // );
 
 const app = express();
+
+const hashPassword = async (password) => {
+  const salt = await bcrypt.genSalt(12);
+  const hash = await bcrypt.hash(password, salt);
+  // console.log(salt);
+  // console.log(hash);
+  return hash;
+};
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -77,13 +84,6 @@ app.post("/carts", (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
-  const hashPassword = async (password) => {
-    const salt = await bcrypt.genSalt(12);
-    const hash = await bcrypt.hash(password, salt);
-    // console.log(salt);
-    // console.log(hash);
-    return hash;
-  };
   const { firstName, streetAddress, city, email } = req.body;
   const password = req.body.password;
 
