@@ -33,6 +33,11 @@ const hashPassword = async (password) => {
   return hash;
 };
 
+const validateEmail = (email) => {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+};
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -86,6 +91,19 @@ app.post("/carts", (req, res) => {
 app.post("/register", async (req, res) => {
   const { firstName, streetAddress, city, email } = req.body;
   const password = req.body.password;
+  console.log(firstName);
+  let errors = {};
+
+  if (!validateEmail(email)) {
+    errors.email = "Invalid email.";
+  } else {
+    try {
+      const existingUser = await get(email);
+      if (existingUser) {
+        errors.email = "Email exists already";
+      }
+    } catch (error) {}
+  }
 
   try {
     const hashedPassword = await hashPassword(password);

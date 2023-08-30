@@ -3,17 +3,17 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    unique: true,
+    unique: false,
     required: [true, "First name cannot be blank"],
   },
   streetAddress: {
     type: String,
-    unique: true,
+    unique: false,
     required: [true, "Street address cannot be blank"],
   },
   city: {
     type: String,
-    unique: true,
+    unique: false,
     required: [true, "City cannot be blank"],
   },
   email: {

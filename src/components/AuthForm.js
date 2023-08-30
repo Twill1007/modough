@@ -1,22 +1,29 @@
 import { Form, useActionData } from "react-router-dom";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import classes from "./AuthForm.module.css";
 
 function AuthForm() {
+  const [isValidEmail, setIsValidEmail] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const isLogin = searchParams.get("mode") === "login";
 
   const data = useActionData();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  // const validateEmail = (input) => {
+  //   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   return emailPattern.test(input);
+  // };
 
   const onSubmit = async (data) => {
     try {
@@ -53,6 +60,15 @@ function AuthForm() {
     // return redirect("/");
     // navigate("/");
   };
+
+  useEffect(() => {
+    if (isLogin) return;
+    if (data && data.errors && data.errors.email) {
+      setIsValidEmail(true);
+    } else {
+      setIsValidEmail(false);
+    }
+  }, [data]);
 
   return (
     <>
@@ -117,6 +133,13 @@ function AuthForm() {
             {...register("email", { required: true })}
           />
           {errors.email && <span>This field is required.</span>}
+          {/* {!isLogin && !isValidEmail && (
+            <span className={classes.error}>
+              {data && data.errors && data.errors.email
+                ? data.errors.email
+                : "Invalid email address."}
+            </span>
+          )} */}
         </p>
         <p>
           <label htmlFor="password">Password</label>
