@@ -8,6 +8,7 @@ import classes from "./AuthForm.module.css";
 function AuthForm() {
   const [isValidEmail, setIsValidEmail] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const isLogin = searchParams.get("mode") === "login";
@@ -33,6 +34,7 @@ function AuthForm() {
         url = "/login";
       }
       setIsButtonDisabled(true);
+
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -51,7 +53,12 @@ function AuthForm() {
         //Registration Success
         navigate("/");
       } else {
-        //Handle Registration Error Here
+        const errorResponseData = await response.json();
+        if (errorResponseData.hasOwnProperty("message")) {
+          const errorMessage = errorResponseData.message;
+
+          setError(errorMessage);
+        }
       }
     } catch (error) {
       console.log("Error Registering User", error);
@@ -133,6 +140,7 @@ function AuthForm() {
             {...register("email", { required: true })}
           />
           {errors.email && <span>This field is required.</span>}
+
           {/* {!isLogin && !isValidEmail && (
             <span className={classes.error}>
               {data && data.errors && data.errors.email
@@ -150,6 +158,7 @@ function AuthForm() {
             {...register("password", { required: true })}
           />
           {errors.password && <span>This field is required.</span>}
+          {error && <p className={classes.error}>{error}</p>}
         </p>
         <div className={classes.actions}>
           <Link to={`?mode=${isLogin ? "register" : "login"}`}>

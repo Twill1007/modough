@@ -91,10 +91,10 @@ app.post("/carts", (req, res) => {
 app.post("/register", async (req, res) => {
   const { firstName, streetAddress, city, email } = req.body;
   const password = req.body.password;
-  console.log(firstName);
+  // console.log(firstName);
   let errors = {};
 
-  if (!validateEmail(email)) {
+  if (!validateEmail()) {
     errors.email = "Invalid email.";
   } else {
     try {
@@ -102,8 +102,12 @@ app.post("/register", async (req, res) => {
       if (existingUser) {
         errors.email = "Email exists already";
       }
-      console.log(email);
+      console.log(errors.email);
     } catch (error) {}
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return res.status(400).json({ errors }); // Sending validation errors
   }
 
   try {
@@ -120,14 +124,12 @@ app.post("/register", async (req, res) => {
       hashedPassword,
     });
     await newUser.save();
-    console.log("this is the new User", newUser);
+    // console.log("this is the new User", newUser);
     // res.status(201).json({ message: "User data received successfully" });
     // console.log("Hashed Password", hashedPassword);
     const token = jwt.sign({ email: newUser.email }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
-
-    console.log(token);
     res.status(201).json({ message: "User registered successfully", token });
   } catch (error) {
     console.error("Error registering user:", error);
@@ -147,18 +149,18 @@ app.post("/login", async (req, res) => {
     user = await User.findOne({ email: emailAddress });
     console.log(user);
     if (!user) {
-      return res.status(401).json({ message: "Authentication Failed" });
+      return res.status(401).json({ message: "Email or Password incorrect." });
     }
     const isPasswordValid = await bcrypt.compare(password, user.hashedPassword);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Authentication Failed." });
+      return res.status(401).json({ message: "Email or Password incorrect." });
     }
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
     res.status(200).json({ message: "Login successful", token });
   } catch (error) {
-    return res.status(401).json({ message: "Authentication failed." });
+    return res.status(401).json({ message: "Email or Password incorrect." });
   }
 });
 
