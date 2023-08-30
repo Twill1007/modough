@@ -102,6 +102,7 @@ app.post("/register", async (req, res) => {
       if (existingUser) {
         errors.email = "Email exists already";
       }
+      console.log(email);
     } catch (error) {}
   }
 
