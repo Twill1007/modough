@@ -9,27 +9,12 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 require("dotenv/config");
 
-// const login = async (pw, hashedPw) => {
-//   const result = await bcrypt.compare(pw, hashedPw);
-//   if (result) {
-//     console.log("Logged you in Successful Match");
-//   } else {
-//     console.log("Incorrect!");
-//   }
-// };
-
-// login(
-//   "monkey!",
-//   "$2b$10$Klg8NTLjkrtXoNSkX0Ufw.qDVy14HMpy8uJ.hZRXZrpsBvYJnPVBS"
-// );
-
 const app = express();
 
 const hashPassword = async (password) => {
   const salt = await bcrypt.genSalt(12);
   const hash = await bcrypt.hash(password, salt);
-  // console.log(salt);
-  // console.log(hash);
+
   return hash;
 };
 
@@ -48,8 +33,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-// app.use("/carts", router);
-// app.use("/register", router);
 
 const dbOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose
@@ -91,7 +74,6 @@ app.post("/carts", (req, res) => {
 app.post("/register", async (req, res) => {
   const { firstName, streetAddress, city, email } = req.body;
   const password = req.body.password;
-  // console.log(firstName);
   let errors = {};
 
   if (!validateEmail(email)) {
@@ -115,8 +97,6 @@ app.post("/register", async (req, res) => {
     const hashedPassword = await hashPassword(password);
     hashedPassword.hashedPassword = hashedPassword;
 
-    // console.log("Here is the password:", password);
-    // console.log("User data received:", userData);
     const newUser = new User({
       firstName,
       streetAddress,
@@ -125,9 +105,7 @@ app.post("/register", async (req, res) => {
       hashedPassword,
     });
     await newUser.save();
-    // console.log("this is the new User", newUser);
-    // res.status(201).json({ message: "User data received successfully" });
-    // console.log("Hashed Password", hashedPassword);
+
     const token = jwt.sign({ email: newUser.email }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
@@ -176,9 +154,6 @@ app.get("/carts", async (req, res) => {
     res.status(500).json({ error: "Error fetching cart data." });
   }
 });
-
-// const token = createJSONToken(email);
-// res.json({ token });
 
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
