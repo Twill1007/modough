@@ -23,6 +23,20 @@ const validateEmail = (email) => {
   return emailPattern.test(email);
 };
 
+const validatePassword = (password) => {
+  const minLength = 8;
+  const hasLowerCase = /[a-z]/.test(password);
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasSpecialSymbol = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password);
+
+  return (
+    password.length >= minLength &&
+    hasLowerCase &&
+    hasUpperCase &&
+    hasSpecialSymbol
+  );
+};
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -75,7 +89,7 @@ app.post("/register", async (req, res) => {
   const { firstName, streetAddress, city, email } = req.body;
   const password = req.body.password;
   let errors = {};
-
+  console.log(password);
   if (!validateEmail(email)) {
     errors.email = "Invalid email.";
   } else {
@@ -88,6 +102,12 @@ app.post("/register", async (req, res) => {
       console.log("Error checking existing user:", error);
     }
   }
+
+  if (!validatePassword(password)) {
+    errors.password =
+      "Password must contain the following, minimum length of 8 characters, at least one lowercase letter, one uppercase letter, and one special symbol";
+  }
+  console.log(errors.password);
 
   if (Object.keys(errors).length > 0) {
     return res.status(400).json({ errors }); // Sending validation errors

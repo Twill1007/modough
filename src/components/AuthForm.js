@@ -59,6 +59,12 @@ function AuthForm() {
         ) {
           const errorMessage = "Email already exists"; //Display the appropriate message
           setError(errorMessage);
+        } else if (
+          errorResponseData.errors &&
+          errorResponseData.errors.password
+        ) {
+          const errorMessage = errorResponseData.errors.password;
+          setError(errorMessage);
         }
       }
     } catch (error) {
