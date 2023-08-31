@@ -54,9 +54,15 @@ function AuthForm() {
         navigate("/");
       } else {
         const errorResponseData = await response.json();
-        if (errorResponseData.hasOwnProperty("message")) {
-          const errorMessage = errorResponseData.message;
-
+        console.log("Error response data", errorResponseData);
+        if (errorResponseData.errors && errorResponseData.errors.email) {
+          const errorMessage = errorResponseData.errors.email;
+          setError(errorMessage);
+        } else if (
+          errorResponseData.errors &&
+          errorResponseData.errors.emailExists
+        ) {
+          const errorMessage = "Email already exists"; //Display the appropriate message
           setError(errorMessage);
         }
       }
@@ -140,6 +146,9 @@ function AuthForm() {
             {...register("email", { required: true })}
           />
           {errors.email && <span>This field is required.</span>}
+          {errors && errors.emailExists && (
+            <p className={classes.error}>{errors.emailExists}</p>
+          )}
 
           {/* {!isLogin && !isValidEmail && (
             <span className={classes.error}>

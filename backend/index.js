@@ -94,16 +94,17 @@ app.post("/register", async (req, res) => {
   // console.log(firstName);
   let errors = {};
 
-  if (!validateEmail()) {
+  if (!validateEmail(email)) {
     errors.email = "Invalid email.";
   } else {
     try {
-      const existingUser = await get(email);
+      const existingUser = await User.findOne({ email: email });
       if (existingUser) {
-        errors.email = "Email exists already";
+        errors.emailExists = "Email exists already.";
       }
-      console.log(errors.email);
-    } catch (error) {}
+    } catch (error) {
+      console.log("Error checking existing user:", error);
+    }
   }
 
   if (Object.keys(errors).length > 0) {
