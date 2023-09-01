@@ -89,7 +89,6 @@ app.post("/register", async (req, res) => {
   const { firstName, streetAddress, city, email } = req.body;
   const password = req.body.password;
   let errors = {};
-  console.log(password);
   if (!validateEmail(email)) {
     errors.email = "Invalid email.";
   } else {
@@ -106,8 +105,8 @@ app.post("/register", async (req, res) => {
   if (!validatePassword(password)) {
     errors.password =
       "Password must contain the following, minimum length of 8 characters, at least one lowercase letter, one uppercase letter, and one special symbol";
+    console.log(errors.password);
   }
-  console.log(errors.password);
 
   if (Object.keys(errors).length > 0) {
     return res.status(400).json({ errors }); // Sending validation errors
@@ -137,29 +136,29 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  const emailAddress = req.body.email;
+  const { email } = req.body;
   const password = req.body.password;
 
-  console.log(emailAddress);
-  console.log(password);
-
-  let user;
+  let loginErrors = {};
   try {
-    user = await User.findOne({ email: emailAddress });
-    console.log(user);
-    if (!user) {
-      return res.status(401).json({ message: "Email or Password incorrect." });
+    const user = await User.findOne({ email: email });
+    console.log("How about this one?", user);
+    if (user === null) {
+      loginErrors.userLogin = "Email address or password is incorrect.";
+      return res.status(401).json({ loginErrors });
     }
     const isPasswordValid = await bcrypt.compare(password, user.hashedPassword);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Email or Password incorrect." });
+      loginErrors.userPassword = "Email address or password is incorrect.";
+      return res.status(401).json({ loginErrors });
     }
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
     res.status(200).json({ message: "Login successful", token });
   } catch (error) {
-    return res.status(401).json({ message: "Email or Password incorrect." });
+    console.log("Error during login:", error);
+    return res.status(500).json({ message: "Incorrect." });
   }
 });
 

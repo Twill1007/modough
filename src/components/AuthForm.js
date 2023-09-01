@@ -41,7 +41,7 @@ function AuthForm() {
       if (response.ok) {
         const responseData = await response.json();
         const token = responseData.token;
-        console.log(responseData);
+
         if (token) {
           localStorage.setItem("token", token);
         }
@@ -49,7 +49,8 @@ function AuthForm() {
         navigate("/");
       } else {
         const errorResponseData = await response.json();
-        console.log("Error response data", errorResponseData);
+        console.log("Login Errors", errorResponseData.loginErrors);
+
         if (errorResponseData.errors && errorResponseData.errors.email) {
           const errorMessage = errorResponseData.errors.email;
           setError(errorMessage);
@@ -64,12 +65,25 @@ function AuthForm() {
           errorResponseData.errors.password
         ) {
           const errorMessage = errorResponseData.errors.password;
+          setError(errorMessage); //This is the password validation.
+        }
+        //I feel like this is where the error is.
+        if (
+          errorResponseData.loginErrors &&
+          errorResponseData.loginErrors.userLogin
+        ) {
+          const errorMessage = errorResponseData.loginErrors.userLogin;
+          setError(errorMessage);
+        } else if (
+          errorResponseData.loginErrors &&
+          errorResponseData.loginErrors.userPassword
+        ) {
+          const errorMessage = errorResponseData.loginErrors.userPassword;
           setError(errorMessage);
         }
       }
-    } catch (error) {
-      console.log("Error Registering User", error);
-    }
+    } catch (error) {}
+
     setIsButtonDisabled(false);
   };
 
@@ -136,8 +150,11 @@ function AuthForm() {
             {...register("email", { required: true })}
           />
           {errors.email && <span>This field is required.</span>}
-          {errors && errors.emailExists && (
-            <p className={classes.error}>{errors.emailExists}</p>
+          {errors.emailExists && (
+            <p className={classes.error}>{errors.emailExists.message}</p>
+          )}
+          {isLogin && errors.loginErrors && (
+            <p className={classes.error}>{errors.loginErrors.message}</p>
           )}
         </p>
         <p>
