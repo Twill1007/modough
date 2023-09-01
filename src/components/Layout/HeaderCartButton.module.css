@@ -1,7 +1,8 @@
 .button {
   cursor: pointer;
   font: inherit;
-  background-color: transparent;
+  background-color: #963f10;
+  border: black 2px solid;
   color: white;
   display: flex;
   justify-content: space-around;
@@ -22,7 +23,7 @@
 }
 
 .badge {
-  background-color: #c63949;
+  background-color: #d7865b;
   padding: 0.25rem 1rem;
   border-radius: 25px;
   margin-left: 1rem;

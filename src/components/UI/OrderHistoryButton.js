@@ -5,7 +5,7 @@ import classes from "./OrderHistoryButton.module.css";
 function OrderHistoryButton() {
   return (
     <Link to="/orderHistory" style={{ textDecoration: "none" }}>
-      <button className={classes.button}>Review Past Orders</button>;
+      <button className={classes.button}>Review Past Orders</button>
     </Link>
   );
 }
