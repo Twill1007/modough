@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from "react";
 import LoginButton from "./LoginButton";
-import classes from "./LogoutButton.module.css";
+import classes from "./MainNavButton.module.css";
 
 function LogoutButton(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);

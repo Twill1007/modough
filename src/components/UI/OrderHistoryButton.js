@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import classes from "./OrderHistoryButton.module.css";
+import classes from "./MainNavButton.module.css";
 
 function OrderHistoryButton() {
   return (

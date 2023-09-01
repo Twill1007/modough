@@ -4,9 +4,10 @@
   background-color: transparent;
   color: white;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 25px;
   font-weight: bold;
 }
 
