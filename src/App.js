@@ -13,6 +13,9 @@ import AuthenticationPage from "./pages/Authentication";
 import CheckOutSummary from "./components/Cart/CheckOutSummary";
 import OrderSummary from "./pages/OrderSummary";
 import OrderHistory from "./pages/OrderHistory";
+import Admin from "./pages/Admin";
+import AboutMo from "./pages/AboutMo";
+import Dough from "./pages/Dough";
 
 const routeDefinitions = createRoutesFromElements(
   <Route>
@@ -21,6 +24,9 @@ const routeDefinitions = createRoutesFromElements(
     <Route path="/auth" element={<AuthenticationPage />} />
     <Route path="/orderSummary" element={<OrderSummary />} />
     <Route path="/orderHistory" element={<OrderHistory />} />
+    <Route path="/admin" element={<Admin />} />
+    <Route path="/aboutMo" element={<AboutMo />} />
+    <Route path="/dough" element={<Dough />} />
   </Route>
 );
 

@@ -7,9 +7,11 @@ import LogoutButton from "../UI/LogoutButton";
 import AboutMoButton from "../UI/AboutMoButton";
 import DoughButton from "../UI/DoughButton";
 import OrderHistoryButton from "../UI/OrderHistoryButton";
+import AdminButton from "../UI/AdminButton";
 
 const MainNavigation = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     //checking if token exists in local storage
@@ -27,12 +29,17 @@ const MainNavigation = (props) => {
     <Fragment>
       <header className={classes.header}>
         <h1>Mo's Dough!</h1>
-        {!isLoggedIn && <LoginButton />}
-        <AboutMoButton />
-        <DoughButton />
-        {isLoggedIn && <HeaderCartButton onClick={props.onShowCart} />}
-        {isLoggedIn && <LogoutButton onLogout={handleLogout} />}
-        {isLoggedIn && <OrderHistoryButton />}
+        <div className={classes.button}>
+          <div className={classes.buttons}>
+            <AboutMoButton />
+            <DoughButton />
+            {isLoggedIn && <OrderHistoryButton />}
+            <AdminButton />
+          </div>
+          {!isLoggedIn && <LoginButton />}
+          {isLoggedIn && <HeaderCartButton onClick={props.onShowCart} />}
+          {isLoggedIn && <LogoutButton onLogout={handleLogout} />}
+        </div>
       </header>
     </Fragment>
   );
