@@ -11,7 +11,7 @@ import AdminButton from "../UI/AdminButton";
 
 const MainNavigation = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     //checking if token exists in local storage
