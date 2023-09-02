@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: absolute;
+  background-color: red;
+  top: 100px;
+}
+
+.listItems {
+  display: flex;
+  width: auto;
+  justify-content: center;
+  position: relative;
+  background-color: blue;
+  top: 150px;
+}

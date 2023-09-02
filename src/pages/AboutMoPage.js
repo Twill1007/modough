@@ -1,7 +1,13 @@
 import React from "react";
 
+import TempNavBar from "../components/Layout/TempNavBar";
+
 function AboutMoPage() {
-  return <h1>About Mo Page</h1>;
+  return (
+    <>
+      <TempNavBar />
+    </>
+  );
 }
 
 export default AboutMoPage;

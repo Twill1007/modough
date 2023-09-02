@@ -1,10 +1,10 @@
 .buttonCC:hover,
 .package:active {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  border: 3px solid rgb(13, 80, 223);
+  border: 3px solid rgba(136, 13, 223, 0.556);
 }
 .buttonCC {
-  background-color: blue;
+  background-color: rgb(0, 30, 255);
   padding-top: 4rem;
   padding-bottom: 4rem;
   padding-left: 8rem;

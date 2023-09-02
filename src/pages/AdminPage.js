@@ -1,7 +1,12 @@
 import React from "react";
+import TempNavBar from "../components/Layout/TempNavBar";
 
 function AdminPage() {
-  return <h1>Admin Page</h1>;
+  return (
+    <TempNavBar>
+      <h1>Admin Page</h1>;
+    </TempNavBar>
+  );
 }
 
 export default AdminPage;
