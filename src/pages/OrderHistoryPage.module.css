@@ -3,15 +3,71 @@
   width: 100%;
   justify-content: center;
   position: absolute;
-  background-color: red;
+  border: blue 2px solid;
+  background-color: rgb(55, 0, 255);
   top: 100px;
 }
 
+.loginError {
+  animation: flash 1s ease infinite;
+  position: relative;
+  top: 350px;
+}
+@keyframes flash {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
 .listItems {
   display: flex;
   width: auto;
   justify-content: center;
   position: relative;
-  background-color: blue;
+  border: black 2px solid;
   top: 150px;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 350px;
+}
+
+.contentA {
+  width: 50%;
+  justify-content: flex-start;
+  position: relative;
+  background-color: rgb(0, 187, 255);
+  border: orange 2px solid;
+}
+.contentB {
+  width: 50%;
+  justify-content: flex-start;
+  position: relative;
+  background-color: rgb(255, 0, 204);
+  border: green 2px solid;
+}
+.contentC {
+  width: 50%;
+  justify-content: flex-start;
+  position: relative;
+  background-color: rgb(255, 242, 0);
+  border: orange 2px solid;
+}
+.contentD {
+  width: 50%;
+  justify-content: flex-start;
+  position: relative;
+  background-color: rgb(9, 255, 0);
+  border: green 2px solid;
 }

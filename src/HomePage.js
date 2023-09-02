@@ -48,7 +48,6 @@ function HomePage() {
         <MenuSD onClose={hideMenuSDHandler} onShowCart={showCartHandler} />
       )}
       <MainNavigation onShowCart={showCartHandler} />
-
       <img className={classes.moImage} src={moImage} alt="Girl Smiling" />
       <p className={classes.bioText}>
         Hello! My name is Morgan! Or you can call me Mo. I always loved to make
