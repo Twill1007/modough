@@ -7,7 +7,23 @@ import ErrorModal from "../components/UI/ErrorModal";
 function OrderHistory() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [orderHistoryItems, setOrderHistoryItems] = useState("");
   const navigate = useNavigate();
+
+  fetch("/orderHistory")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network  response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      //This is where I will handle and process the data from the backend.
+      setOrderHistoryItems(data);
+    })
+    .catch((error) => {
+      console.error("There was a problem with teh fetch operation:", error);
+    });
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -34,6 +50,12 @@ function OrderHistory() {
       {isLoggedIn && (
         <div>
           <h1 className={classes.header}>List of previous orders</h1>
+          {/* Render order history items */}
+          <div className={classes.listItems}>
+            {orderHistoryItems.map((item) => (
+              <div key={item._id}>{/* Render each item here */}</div>
+            ))}
+          </div>
           <div className={classes.listItems}>List of Dates</div>
           <div className={classes.flexContainer}>
             <div className={classes.contentA}>Content A</div>

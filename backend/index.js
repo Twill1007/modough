@@ -174,6 +174,17 @@ app.get("/carts", async (req, res) => {
   }
 });
 
+app.get("/orderHistory", async (req, res) => {
+  const userIdToFind = "Tommy";
+  User.find({ firstName: userIdToFind }, (err, orders) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(orders);
+    }
+  });
+});
+
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
   console.log(`Server is running on ${port}`);
