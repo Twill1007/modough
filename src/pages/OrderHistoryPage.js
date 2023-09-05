@@ -50,13 +50,13 @@ function OrderHistory() {
       {isLoggedIn && (
         <div>
           <h1 className={classes.header}>List of previous orders</h1>
-          {/* Render order history items */}
+          Render order history items
           <div className={classes.listItems}>
-            {orderHistoryItems.map((item) => (
-              <div key={item._id}>{/* Render each item here */}</div>
-            ))}
+            {/* {orderHistoryItems.map((item) => (
+              <div key={item._id}>{}</div>
+            ))} */}
           </div>
-          <div className={classes.listItems}>List of Dates</div>
+          <div className={classes.listItems}>{orderHistoryItems}</div>
           <div className={classes.flexContainer}>
             <div className={classes.contentA}>Content A</div>
             <div className={classes.contentB}>content B</div>

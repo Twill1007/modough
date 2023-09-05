@@ -1,6 +1,6 @@
 import React from "react";
 import ModalMenu from "../components/UI/ModalMenu";
-import classes from "./MenuCC.module.css";
+import classes from "./MenuCookie.module.css";
 import CCDough from "../assets/CCBall.JPG";
 import CookieItemForm from "../components/CookieItemForm";
 import { useContext } from "react";
@@ -56,7 +56,7 @@ function MenuCC(props) {
     <ModalMenu onClose={props.onClose}>
       <div className={classes.total}>
         <img
-          className={classes.CCDoughImage}
+          className={classes.doughImage}
           src={CCDough}
           alt="cookie dough ball"
         />

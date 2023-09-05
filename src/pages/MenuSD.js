@@ -1,6 +1,6 @@
 import React from "react";
 import ModalMenu from "../components/UI/ModalMenu";
-import classes from "./MenuSD.module.css";
+import classes from "./MenuCookie.module.css";
 import SDDough from "../assets/SDBall.JPG";
 import CookieItemForm from "../components/CookieItemForm";
 import { useContext } from "react";
@@ -45,7 +45,7 @@ function MenuSD(props) {
     <ModalMenu onClose={props.onClose}>
       <div className={classes.total}>
         <img
-          className={classes.SDDoughImage}
+          className={classes.doughImage}
           src={SDDough}
           alt="cookie dough ball"
         />
