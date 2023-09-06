@@ -1,17 +1,10 @@
-.cart-items {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-height: 20rem;
-  overflow: auto;
-}
 .itemForm {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.total {
+.price {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -22,49 +15,19 @@
   border: 2px solid black;
 }
 
-.actions {
-  position: relative;
-  border: black 2px solid;
-  text-align: left;
-}
-
-.actions button {
-  font: inherit;
-  cursor: pointer;
-  background-color: #068a7b;
-  border: 1px solid #068a7b;
-  padding: 0rem 1rem;
-  border-radius: 25px;
-  margin-left: 1rem;
-}
-
-.actions button:hover,
-.actions button:active {
-  background-color: #068a7b;
-  border-color: #068a7b;
-  color: white;
-}
-
-.actions .button--alt {
-  color: #068a7b;
-}
-
-.actions .button {
-  background-color: #068a7b;
-  color: #068a7b;
-}
-
 .meal {
   display: flex;
   flex-direction: row;
+  border: 2px solid rgb(255, 0, 0);
 }
 
 .meal h3 {
   margin: 0 0 0.25rem 0;
+  border: 2px solid black;
 }
 
 .description {
-  border: 2px dotted black;
+  border: 2px solid black;
   font-style: italic;
   max-width: 500px;
 }

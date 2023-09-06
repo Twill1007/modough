@@ -24,16 +24,15 @@ function MenuSD(props) {
       price: item.price,
     });
   };
-
   const cookieItems = sdDisplay.map((item) => (
     <div key={item.id}>
       <div className={classes.meal}>
+        <h3>{item.title}</h3>
         <img
           className={classes.doughImage}
           src={SDDough}
           alt="cookie dough ball"
         />
-        <h3>{item.title}</h3>
         <p className={classes.description}>{item.description}</p>
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
       </div>

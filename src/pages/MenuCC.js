@@ -6,7 +6,7 @@ import CookieItemForm from "../components/CookieItemForm";
 import { useContext } from "react";
 import CartContext from "../store/cart-context";
 
-const displayCC = [
+const ccdisplay = [
   {
     id: "c1",
     title: "Chocolate Chip Cookies",
@@ -14,16 +14,6 @@ const displayCC = [
     price: 10,
   },
 ];
-
-// const displaySD = [
-//   {
-//     id: "c1",
-//     title: "Chocolate Chip Cookies",
-//     description: "Delicous and soft Chocolate Chip Cookies",
-//     price: 10,
-//   },
-// ];
-
 function MenuCC(props) {
   const cartCtx = useContext(CartContext);
   const addToCartHandler = (item) => {
@@ -34,15 +24,18 @@ function MenuCC(props) {
       price: item.price,
     });
   };
-  // let modalContet;
-  const cookieItems = displayCC.map((item) => (
+  const cookieItems = ccdisplay.map((item) => (
     <div key={item.id}>
       <div className={classes.meal}>
-        <h3 className={classes.title}>{item.title}</h3>
+        <h3>{item.title}</h3>
+        <img
+          className={classes.doughImage}
+          src={CCDough}
+          alt="cookie dough ball"
+        />
         <p className={classes.description}>{item.description}</p>
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
       </div>
-
       <CookieItemForm
         cookieType="CC"
         onClose={props.onClose}
@@ -54,17 +47,8 @@ function MenuCC(props) {
 
   return (
     <ModalMenu onClose={props.onClose}>
-      <div className={classes.total}>
-        <img
-          className={classes.doughImage}
-          src={CCDough}
-          alt="cookie dough ball"
-        />
-        <div className={classes.actions}>
-          <div className={classes.actions}>
-            <div>{cookieItems}</div>
-          </div>
-        </div>
+      <div>
+        <div>{cookieItems}</div>
       </div>
     </ModalMenu>
   );
