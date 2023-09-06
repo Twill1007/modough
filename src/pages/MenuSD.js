@@ -28,7 +28,12 @@ function MenuSD(props) {
   const cookieItems = sdDisplay.map((item) => (
     <div key={item.id}>
       <div className={classes.meal}>
-        <h3 className={classes.title}>{item.title}</h3>
+        <img
+          className={classes.doughImage}
+          src={SDDough}
+          alt="cookie dough ball"
+        />
+        <h3>{item.title}</h3>
         <p className={classes.description}>{item.description}</p>
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
       </div>
@@ -43,17 +48,8 @@ function MenuSD(props) {
 
   return (
     <ModalMenu onClose={props.onClose}>
-      <div className={classes.total}>
-        <img
-          className={classes.doughImage}
-          src={SDDough}
-          alt="cookie dough ball"
-        />
-        <div className={classes.actions}>
-          <div className={classes.actions}>
-            <div>{cookieItems}</div>
-          </div>
-        </div>
+      <div>
+        <div>{cookieItems}</div>
       </div>
     </ModalMenu>
   );

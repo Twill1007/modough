@@ -5,6 +5,11 @@
   max-height: 20rem;
   overflow: auto;
 }
+.itemForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
 .total {
   display: flex;
@@ -26,8 +31,8 @@
 .actions button {
   font: inherit;
   cursor: pointer;
-  background-color: #8a2b06;
-  border: 1px solid #8a2b06;
+  background-color: #068a7b;
+  border: 1px solid #068a7b;
   padding: 0rem 1rem;
   border-radius: 25px;
   margin-left: 1rem;
@@ -35,26 +40,23 @@
 
 .actions button:hover,
 .actions button:active {
-  background-color: #5a1a01;
-  border-color: #5a1a01;
+  background-color: #068a7b;
+  border-color: #068a7b;
   color: white;
 }
 
 .actions .button--alt {
-  color: #8a2b06;
+  color: #068a7b;
 }
 
 .actions .button {
-  background-color: #8a2b06;
-  color: #8a2b06;
+  background-color: #068a7b;
+  color: #068a7b;
 }
 
 .meal {
   display: flex;
-  justify-content: space-between;
-  margin: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #ccc;
+  flex-direction: row;
 }
 
 .meal h3 {
@@ -64,26 +66,12 @@
 .description {
   border: 2px dotted black;
   font-style: italic;
-  max-width: 200px;
+  max-width: 500px;
 }
 
-.price {
-  margin-top: 0.25rem;
-  font-weight: bold;
-  color: #ad5502;
-  font-size: 1.25rem;
-}
 .doughImage {
   border: 2px solid rgb(241, 27, 27);
   border-radius: 25%;
   width: 200px;
   height: 200px;
-}
-
-.title {
-  position: absolute;
-  top: 0px;
-  right: 750px;
-  height: 30px;
-  background-color: red;
 }
