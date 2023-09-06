@@ -27,7 +27,7 @@ function MenuCC(props) {
   const cookieItems = ccdisplay.map((item) => (
     <div key={item.id}>
       <div className={classes.meal}>
-        <h3>{item.title}</h3>
+        <h3 className={classes.title}>{item.title}</h3>
         <img
           className={classes.doughImage}
           src={CCDough}

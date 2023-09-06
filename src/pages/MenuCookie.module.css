@@ -21,9 +21,11 @@
   border: 2px solid rgb(255, 0, 0);
 }
 
-.meal h3 {
+.title {
+  display: flex;
+  align-items: center;
   margin: 0 0 0.25rem 0;
-  border: 2px solid black;
+  border: 2px solid rgb(34, 0, 255);
 }
 
 .description {
