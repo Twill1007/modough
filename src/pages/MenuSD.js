@@ -25,7 +25,7 @@ function MenuSD(props) {
     });
   };
   const cookieItems = sdDisplay.map((item) => (
-    <div key={item.id}>
+    <div key={item.id} className={classes.menu}>
       <div className={classes.meal}>
         <h3 className={classes.title}>{item.title}</h3>
         <img

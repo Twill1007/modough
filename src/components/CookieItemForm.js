@@ -36,7 +36,7 @@ const CookieItemForm = (props) => {
   };
 
   return (
-    <form className={classes.form} onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={classes.form}>
       <Input
         ref={amountInputRef}
         label={"Amount"}
