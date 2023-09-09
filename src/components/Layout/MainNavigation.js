@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useEffect } from "react";
-
+import React, { Fragment, useState, useEffect, useContext } from "react";
+import CartContext from "../../store/cart-context";
 import HeaderCartButton from "./HeaderCartButton";
 import classes from "./MainNavigation.module.css";
 import LoginButton from "../UI/LoginButton";
@@ -11,6 +11,7 @@ import AdminButton from "../UI/AdminButton";
 
 const MainNavigation = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const cartCtx = useContext(CartContext);
   // const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const MainNavigation = (props) => {
   }, []);
   const handleLogout = () => {
     localStorage.removeItem("token"); // Removes token on logout.
+    cartCtx.clearCart();
     setIsLoggedIn(false);
   };
 
