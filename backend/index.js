@@ -1,4 +1,4 @@
-const { NewOrders } = require("./models/schemas");
+const { cart } = require("./models/schemas");
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -58,11 +58,11 @@ mongoose
     console.log(err);
   });
 
-app.post("/newOrders", (req, res) => {
+app.post("/cart", (req, res) => {
   const cartData = req.body;
   console.log("Received cart data:", cartData);
   const savePromises = cartData.map((item) => {
-    const cartItem = new NewOrders({
+    const cartItem = new cart({
       userId: item.userId,
       title: item.title,
       price: item.price,

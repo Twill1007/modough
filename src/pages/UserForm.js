@@ -30,7 +30,7 @@ const UserForm = (props) => {
 
       console.log(cartData);
       // Send cart data to the server
-      fetch("/newOrders", {
+      fetch("/cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
