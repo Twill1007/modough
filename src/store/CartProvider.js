@@ -1,5 +1,4 @@
 import { useReducer } from "react";
-
 import CartContext from "./cart-context";
 
 const defaultCartState = {
@@ -76,6 +75,7 @@ const cartReducer = (state, action) => {
 //components that want acces to it.
 const CartProvider = (props) => {
   //useReducer returns an array with exactly two elements.
+  //dispatchCartAction is a function that receives an object as its argument and udpates the state.
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     defaultCartState
