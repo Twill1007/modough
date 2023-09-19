@@ -14,8 +14,8 @@ function MenuItemSelector() {
         <label>Select Your Option</label>
         <select value={selectedValue} onChange={handleSelectionChange}>
           <option value="">Select An Option</option>
-          <option value="Chocolate Chip Cookies">Chocolate Chip Cookies</option>
-          <option value="Snickerdoodle Cookies">Snickerdoodle Cookies</option>
+          <option value="One Dozen">1 Dozen for $10</option>
+          <option value="Two Dozen">2 Dozen for $18</option>
         </select>
       </div>
       <div className={classes.selectedOption}>

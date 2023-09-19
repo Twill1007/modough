@@ -4,7 +4,7 @@ import React from "react";
 
 const ButtonCC = (props) => {
   return (
-    <div class="container-fluid col-sm-3 text-center">
+    <div class="container-fluid col-sm-6 text-center">
       <span className={classes.cookieTitleCC}>Chocolate Chip Cookies</span>
       <button
         onClick={props.onShowMenuCC}
