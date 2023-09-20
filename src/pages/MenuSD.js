@@ -16,6 +16,7 @@ const sdDisplay = [
 ];
 function MenuSD(props) {
   const cartCtx = useContext(CartContext);
+
   const addToCartHandler = (item) => {
     cartCtx.addItem({
       id: item.id,
