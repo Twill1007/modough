@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classes from "./MenuCookie.module.css";
+import classes from "./MenuItemSelectorPage.module.css";
 
 function MenuItemSelector(props) {
   const [selectedValue, setSelectedValue] = useState("");
