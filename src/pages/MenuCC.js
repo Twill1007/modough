@@ -3,6 +3,7 @@ import ModalMenu from "../components/UI/ModalMenu";
 import classes from "./MenuCookie.module.css";
 import CCDough from "../assets/CCBall.JPG";
 import CookieItemForm from "../components/CookieItemForm";
+import MenuItemSelector from "./MenuItemSelectorPage";
 import { useContext } from "react";
 import CartContext from "../store/cart-context";
 
@@ -10,7 +11,8 @@ const ccdisplay = [
   {
     id: "c1",
     title: "Chocolate Chip Cookies",
-    description: "Delicous and soft Chocolate Chip Cookies",
+    description:
+      "Indulge in the ultimate guilt-free pleasure with our delectable homemade dairy-free chocolate chip cookies! Crafted with love, these cookies offer the same luscious taste and chewy texture you crave, minus the dairy. Satisfy your sweet tooth while staying kind to your body!",
     price: 10,
   },
 ];
@@ -36,7 +38,7 @@ function MenuCC(props) {
         <p className={classes.description}>{item.description}</p>
         <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
       </div>
-      <CookieItemForm
+      <MenuItemSelector
         cookieType="CC"
         onClose={props.onClose}
         onAddToCart={addToCartHandler}
