@@ -3,8 +3,7 @@ import { useSelectionOptions } from "../store/selectionOptionsContext";
 import classes from "./MenuItemSelectorPage.module.css";
 
 function MenuItemSelector(props) {
-  const [selectOtherCookie, setSelectOtherCookie] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(false);
+  const [setSelectOtherCookie] = useState(false);
 
   const { options, selectedOption, setSelectedOption } = useSelectionOptions();
 
