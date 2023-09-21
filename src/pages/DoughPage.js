@@ -1,7 +1,6 @@
 import React from "react";
 import TempNavBar from "../components/Layout/TempNavBar";
 import Button from "../components/Button";
-import MenuItemSelector from "./MenuItemSelectorPage";
 
 function DoughPage() {
   return (
@@ -10,7 +9,6 @@ function DoughPage() {
       <div>
         <Button />
       </div>
-      <MenuItemSelector />
     </>
   );
 }

@@ -9,7 +9,7 @@ export const useSelectionOptions = () => {
 };
 
 export const SelectionOptionsProvider = ({ children }) => {
-  const options = ["One Dozen", "Two Dozen"];
+  const options = ["One Dozen", "Two Dozen", "Three Dozen"];
   const [selectedOption, setSelectedOption] = useState("");
 
   const value = {
