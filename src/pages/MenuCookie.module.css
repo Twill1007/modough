@@ -20,11 +20,14 @@
   border: 2px solid rgb(34, 0, 255);
 }
 .descriptionClass {
+  position: absolute;
+  width: 400px;
+  top: 115px;
+  right: 55px;
   display: flex;
   flex-direction: row;
   flex-direction: row-reverse;
   justify-content: end;
-  border: 2px black solid;
 }
 .description {
   border: 1px solid purple;

@@ -16,6 +16,7 @@ import OrderHistoryPage from "./pages/OrderHistoryPage";
 import AdminPage from "./pages/AdminPage";
 import AboutMoPage from "./pages/AboutMoPage";
 import DoughPage from "./pages/DoughPage";
+import { SelectionOptionsProvider } from "./store/selectionOptionsContext";
 
 const routeDefinitions = createRoutesFromElements(
   <Route>
@@ -40,7 +41,9 @@ const router = createBrowserRouter(routeDefinitions);
 function App() {
   return (
     <CartProvider>
-      <RouterProvider router={router} />;
+      <SelectionOptionsProvider>
+        <RouterProvider router={router} />;
+      </SelectionOptionsProvider>
     </CartProvider>
   );
 }

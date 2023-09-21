@@ -28,7 +28,7 @@ function MenuCC(props) {
           <p className={classes.description}>{item.description}</p>
         </div>
 
-        <p className={classes.price}>Price: ${item.price.toFixed(2)}</p>
+        <p className={classes.price}>Price: </p>
       </div>
       <MenuItemSelector
         cookieType="CC"

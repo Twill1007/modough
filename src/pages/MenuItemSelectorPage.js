@@ -1,16 +1,19 @@
 import React, { useState } from "react";
+import { useSelectionOptions } from "../store/selectionOptionsContext";
 import classes from "./MenuItemSelectorPage.module.css";
 
 function MenuItemSelector(props) {
-  const [selectedValue, setSelectedValue] = useState("");
-  const [selectOtherCookie, setSelectOtherCookie] = useState(true);
+  const [selectOtherCookie, setSelectOtherCookie] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(false);
+
+  const { options, selectedOption, setSelectedOption } = useSelectionOptions();
+
+  const handleSelectionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
   const selectOtherCookieHandler = () => {
     setSelectOtherCookie(false);
-  };
-
-  const handleSelectionChange = (event) => {
-    setSelectedValue(event.target.value);
   };
 
   const submitHandler = (event) => {
@@ -22,14 +25,17 @@ function MenuItemSelector(props) {
       <form onSubmit={submitHandler} className={classes.form}>
         <div className={classes.container}>
           <label>Select Your Option</label>
-          <select value={selectedValue} onChange={handleSelectionChange}>
+          <select value={selectedOption} onChange={handleSelectionChange}>
             <option value="">Select An Option</option>
-            <option value="One Dozen">1 Dozen for $10</option>
-            <option value="Two Dozen">2 Dozen for $18</option>
+            {options.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
         <div className={classes.selectedOption}>
-          <p>Selected Value: {selectedValue}</p>
+          <p>Selected Value: {selectedOption}</p>
         </div>
 
         <button
@@ -44,9 +50,9 @@ function MenuItemSelector(props) {
         </button>
         <button onClick={props.onClose}>Close</button>
         <button onClick={props.onClose}>Other Cookies</button>
-        {selectedValue !== "" && (
+        {selectedOption === "One Dozen" || selectedOption === "Two Dozen" ? (
           <button onClick={selectOtherCookieHandler}>Add to Cart</button>
-        )}
+        ) : null}
       </form>
     </>
   );
